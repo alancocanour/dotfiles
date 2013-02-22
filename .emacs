@@ -280,6 +280,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(org-todo-keywords (quote ((sequence "BLOCKED" "TODO" "|" "DONE" "CANCELED"))))
  '(projectile-global-mode t)
  '(rng-schema-locating-files (quote ("~/.emacs.d/schemas/schemas.xml" "schemas.xml")))
+ '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(semantic-idle-scheduler-idle-time 1)
  '(send-mail-function (quote smtpmail-send-it))
  '(setq inhibit-startup-message t)
