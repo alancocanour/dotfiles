@@ -1,3 +1,5 @@
+(server-start)
+
 ;;Setup packages to automatically download
 (setq
  my-packages '(
@@ -289,6 +291,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(tab-always-indent (quote complete))
  '(tab-width 4)
  '(tool-bar-mode nil)
+ '(vc-follow-symlinks t)
  '(win-switch-down-keys (quote ("s")))
  '(win-switch-enlarge-horizontally-keys (quote ("D")))
  '(win-switch-enlarge-vertically-keys (quote ("W")))
