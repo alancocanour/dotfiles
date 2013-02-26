@@ -23,6 +23,7 @@
                projectile
                rainbow-delimiters
                rainbow-mode
+               wgrep
                win-switch
                ))
 ;;Enable Marmalade repo
