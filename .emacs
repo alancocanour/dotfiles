@@ -70,6 +70,7 @@
 (add-hook 'prog-mode-hook 'flycheck-mode)
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
 (add-hook 'c-mode-common-hook 'doc-mode)
+(add-hook 'grep-mode-hook 'toggle-truncate-lines)
 (require 'win-switch)
 (semantic-mode 1)
 (autoload 'company-mode "company")
