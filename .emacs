@@ -23,6 +23,7 @@
                projectile
                rainbow-delimiters
                rainbow-mode
+               rvm
                wgrep
                win-switch
                ))
