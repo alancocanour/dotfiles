@@ -14,6 +14,7 @@
                enclose
                flycheck
                groovy-mode
+               haml-mode
                highlight-symbol
                htmlize
                javadoc-help
@@ -24,6 +25,7 @@
                rainbow-delimiters
                rainbow-mode
                rvm
+               sass-mode
                wgrep
                win-switch
                ))
@@ -88,7 +90,9 @@
 (add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
 (add-to-list 'auto-mode-alist '("\.gradle$" . groovy-mode))
 (add-to-list 'auto-mode-alist '("\.gemspec$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("[Rr]akefile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("^[Rr]akefile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\.sass$" . sass-mode))
 (add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
 
 ;;Show buffer boundaries in left fringe
