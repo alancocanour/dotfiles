@@ -30,7 +30,8 @@
                win-switch
                ))
 ;;Enable Marmalade repo
-(setq package-archives (quote (("gnu" . "http://elpa.gnu.org/packages/") ("marmalade" . "http://marmalade-repo.org/packages/"))))
+(setq package-archives (quote (("gnu" . "http://elpa.gnu.org/packages/")
+                               ("melpa" . "http://melpa.milkbox.net/packages/"))))
 
 ;;Intsall missing packages
 (require 'cl)
