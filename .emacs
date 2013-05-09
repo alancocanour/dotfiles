@@ -246,6 +246,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(compilation-scroll-output (quote first-error))
  '(csharp-want-flymake-fixup nil)
  '(delete-by-moving-to-trash t)
+ '(dired-recursive-deletes (quote always))
  '(display-time-day-and-date t)
  '(display-time-default-load-average nil)
  '(display-time-mode t)
