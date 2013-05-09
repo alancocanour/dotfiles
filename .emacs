@@ -12,7 +12,6 @@
                doc-mode
                drag-stuff
                enclose
-               flycheck
                groovy-mode
                haml-mode
                highlight-symbol
@@ -63,7 +62,6 @@
 (autoload 'javadoc-lookup       "javadoc-help" "Look up Java class in Javadoc."   t)
 (autoload 'javadoc-help         "javadoc-help" "Open up the Javadoc-help menu."   t)
 (autoload 'highlight-symbol-mode         "highlight-symbol" "Highlights the symbol under the cursor"   t)
-(autoload 'flycheck-mode         "flycheck" "On the fly syntax checker"   t)
 (add-hook 'text-mode-hook 'adaptive-wrap-prefix-mode)
 (add-hook 'text-mode-hook 'drag-stuff-mode)
 (add-hook 'org-mode-hook 'turn-off-drag-stuff-mode)
@@ -71,7 +69,6 @@
 (add-hook 'prog-mode-hook 'adaptive-wrap-prefix-mode)
 (add-hook 'prog-mode-hook 'drag-stuff-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
-(add-hook 'prog-mode-hook 'flycheck-mode)
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
 (add-hook 'c-mode-common-hook 'doc-mode)
 (add-hook 'grep-mode-hook 'toggle-truncate-lines)
