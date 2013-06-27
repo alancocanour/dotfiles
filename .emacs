@@ -77,8 +77,6 @@
 (autoload 'company-mode "company")
 (add-hook 'prog-mode-hook 'company-mode)
 (electric-pair-mode)
-;;(add-hook 'prog-mode-hook 'electric-indent-mode)
-(add-hook 'java-mode-hook 'subword-mode)
 (autoload 'vtl-mode "vtl")
 (add-hook 'xml-mode 'company-mode)
 (add-hook 'eshell-mode-hook 'company-mode)
