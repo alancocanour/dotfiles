@@ -302,6 +302,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(vc-follow-symlinks t)
+ '(warning-suppress-types (quote ((\(undo\ discard-info\)))) nil nil "Disable warning for really big undos")
  '(win-switch-down-keys (quote ("s")))
  '(win-switch-enlarge-horizontally-keys (quote ("D")))
  '(win-switch-enlarge-vertically-keys (quote ("W")))
