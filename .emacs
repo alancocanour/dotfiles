@@ -270,7 +270,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(multi-eshell-name "*eshell*")
  '(multi-eshell-shell-function (quote (eshell)))
  '(next-line-add-newlines t)
- '(nxml-auto-insert-xml-declaration-flag t)
+ '(nxml-auto-insert-xml-declaration-flag nil)
  '(nxml-sexp-element-flag t)
  '(org-agenda-files "~/.agenda_files")
  '(org-agenda-restore-windows-after-quit t)
