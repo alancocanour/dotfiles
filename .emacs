@@ -12,6 +12,7 @@
                doc-mode
                drag-stuff
                enclose
+               fic-mode
                groovy-mode
                haml-mode
                highlight-symbol
@@ -70,6 +71,7 @@
 (add-hook 'prog-mode-hook 'drag-stuff-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
+(add-hook 'prog-mode-hook 'turn-on-fic-mode)
 (add-hook 'c-mode-common-hook 'doc-mode)
 (add-hook 'grep-mode-hook 'toggle-truncate-lines)
 (require 'win-switch)
