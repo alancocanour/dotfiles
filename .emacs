@@ -233,6 +233,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-revert-verbose nil)
  '(backup-directory-alist (quote (("." . "~/.saves"))))
  '(calendar-latitude 33.45)
  '(calendar-longitude -112.066667)
