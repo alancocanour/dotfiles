@@ -15,6 +15,7 @@
                fic-mode
                groovy-mode
                haml-mode
+               haskell-mode
                highlight-symbol
                htmlize
                javadoc-help
