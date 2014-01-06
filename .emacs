@@ -269,6 +269,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(global-num3-mode nil)
  '(global-rainbow-delimiters-mode t)
  '(grep-highlight-matches (quote auto-detect))
+ '(haskell-mode-hook (quote (turn-on-haskell-indentation turn-on-haskell-doc)))
  '(highlight-symbol-idle-delay 0.5)
  '(ibuffer-default-sorting-mode (quote filename/process))
  '(ido-auto-merge-work-directories-length -1)
