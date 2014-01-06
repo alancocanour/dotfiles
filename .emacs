@@ -100,6 +100,16 @@
 ;;Always ask y or n instead of yes or no
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;;Highlight changes since last save
+(global-highlight-changes-mode t)
+(make-empty-face 'highlight-changes-saved-face)
+(setq highlight-changes-face-list '(highlight-changes-saved-face))
+(add-hook 'write-file-hooks 'highlight-changes-rotate-faces)
+(set-face-foreground 'highlight-changes nil)
+(set-face-background 'highlight-changes "#2f4f2f")
+(set-face-foreground 'highlight-changes-delete nil)
+(set-face-background 'highlight-changes-delete "#4f2f2f")
+
 (require 'thingatpt)
 (defun describe-at-point ()
   "Uses semantic to describe the class currently under the point"
