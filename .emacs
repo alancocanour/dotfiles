@@ -110,6 +110,7 @@
 (set-face-background 'highlight-changes "#2f4f2f")
 (set-face-foreground 'highlight-changes-delete nil)
 (set-face-background 'highlight-changes-delete "#4f2f2f")
+(set-face-underline 'highlight-changes-delete nil)
 
 (require 'thingatpt)
 (defun describe-at-point ()
