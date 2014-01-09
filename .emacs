@@ -101,6 +101,9 @@
 ;;Always ask y or n instead of yes or no
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;;Keep the compilation buffer from opening in every frame
+(setq-default display-buffer-reuse-frames t)
+
 ;;Highlight changes since last save
 (global-highlight-changes-mode t)
 (make-empty-face 'highlight-changes-saved-face)
