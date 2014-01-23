@@ -73,6 +73,7 @@
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
 (add-hook 'prog-mode-hook 'fic-mode)
+(add-hook 'prog-mode-hook 'capitalized-words-mode)
 (add-hook 'c-mode-common-hook 'doc-mode)
 (add-hook 'grep-mode-hook 'toggle-truncate-lines)
 (require 'win-switch)
