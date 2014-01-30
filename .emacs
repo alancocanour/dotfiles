@@ -237,6 +237,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 (define-key my-keys-minor-mode-map (kbd "M-Q") 'unfill-paragraph)
 (define-key my-keys-minor-mode-map (kbd "<S-SPC>") 'insert-underscore)
 (define-key my-keys-minor-mode-map (kbd "C-S-d") 'delete-pair)
+(define-key my-keys-minor-mode-map (kbd "\C-ch") 'highlight-changes-visible-mode)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
