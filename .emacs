@@ -203,7 +203,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 (defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
 
 ;;(define-key my-keys-minor-mode-map (kbd "C-i") 'some-function)
-(define-key my-keys-minor-mode-map (kbd "C-c SPC") 'ace-jump-mode)
+(define-key my-keys-minor-mode-map (kbd "C-c SPC") 'just-one-space)
 (define-key my-keys-minor-mode-map (kbd "C-c C-SPC") 'ace-jump-mode)
 (define-key my-keys-minor-mode-map (kbd "\C-xo") 'win-switch-dispatch)
 (define-key my-keys-minor-mode-map (kbd "M-,") 'describe-at-point)
