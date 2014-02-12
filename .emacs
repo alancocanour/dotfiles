@@ -3,6 +3,7 @@
 ;;Setup packages to automatically download
 (setq
  my-packages '(
+               ace-jump-buffer
                ace-jump-mode
                adaptive-wrap
                auctex
@@ -207,6 +208,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 (define-key my-keys-minor-mode-map (kbd "C-c C-SPC") 'ace-jump-mode)
 (define-key my-keys-minor-mode-map (kbd "\C-xo") 'win-switch-dispatch)
 (define-key my-keys-minor-mode-map (kbd "M-,") 'describe-at-point)
+(define-key my-keys-minor-mode-map (kbd "C-c C-b") 'ace-jump-buffer)
 (define-key my-keys-minor-mode-map (kbd "M-.") 'semantic-ia-fast-jump)
 (define-key my-keys-minor-mode-map (kbd "C-SPC") 'company-complete-common)
 (define-key my-keys-minor-mode-map (kbd "C-x C-b") 'ibuffer)
