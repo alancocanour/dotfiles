@@ -6,6 +6,7 @@
                ace-jump-buffer
                ace-jump-mode
                adaptive-wrap
+               ag
                auctex
                centered-cursor-mode
                company
@@ -29,6 +30,7 @@
                rvm
                sass-mode
                wgrep
+               wgrep-agp
                win-switch
                ))
 ;;Enable Marmalade repo
@@ -218,7 +220,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 (define-key my-keys-minor-mode-map (kbd "C-_") 'shrink-window)
 (define-key my-keys-minor-mode-map (kbd "\C-x41") 'maximize-window)
 (define-key my-keys-minor-mode-map (kbd "\C-x42") 'minimize-window)
-(define-key my-keys-minor-mode-map (kbd "\C-ca") 'org-agenda)
+(define-key my-keys-minor-mode-map (kbd "\C-ca") 'ag-project)
 (define-key my-keys-minor-mode-map (kbd "\C-cA") 'auto-revert-mode)
 (define-key my-keys-minor-mode-map (kbd "\C-cg") 'magit-status)
 (define-key my-keys-minor-mode-map (kbd "\C-cs") 'multi-eshell)
