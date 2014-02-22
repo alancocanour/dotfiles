@@ -2,6 +2,7 @@
 import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Layout.NoBorders
 import XMonad.Util.Run
 
 main = do
@@ -13,7 +14,7 @@ main = do
             , borderWidth = 1
             , normalBorderColor = "#000000"
             , manageHook = manageDocks <+> manageHook defaultConfig
-            , layoutHook = avoidStruts $ layoutHook defaultConfig
+            , layoutHook = avoidStruts . smartBorders $ layoutHook defaultConfig
             , logHook = dynamicLogWithPP defaultPP {
                   ppOutput = hPutStrLn xmobar
                              --, ppTitle = shorten 50
