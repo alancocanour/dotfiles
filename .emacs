@@ -14,6 +14,7 @@
                doc-mode
                drag-stuff
                enclose
+               expand-region
                fic-mode
                groovy-mode
                haml-mode
@@ -225,6 +226,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 (define-key my-keys-minor-mode-map (kbd "\C-cg") 'magit-status)
 (define-key my-keys-minor-mode-map (kbd "\C-cs") 'multi-eshell)
 (define-key my-keys-minor-mode-map (kbd "\C-cc") 'calc)
+(define-key my-keys-minor-mode-map (kbd "\C-ce") 'er/expand-region)
 (define-key my-keys-minor-mode-map (kbd "\C-ci") 'ispell)
 (define-key my-keys-minor-mode-map (kbd "\C-cr") 'recompile)
 (define-key my-keys-minor-mode-map (kbd "\C-c|") 'toggle-window-split)
