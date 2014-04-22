@@ -209,6 +209,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 ;;(define-key my-keys-minor-mode-map (kbd "C-i") 'some-function)
 (define-key my-keys-minor-mode-map (kbd "C-c SPC") 'just-one-space)
 (define-key my-keys-minor-mode-map (kbd "C-c C-SPC") 'ace-jump-mode)
+(define-key my-keys-minor-mode-map (kbd "C-S-z") 'bury-buffer)
 (define-key my-keys-minor-mode-map (kbd "\C-xo") 'win-switch-dispatch)
 (define-key my-keys-minor-mode-map (kbd "M-,") 'describe-at-point)
 (define-key my-keys-minor-mode-map (kbd "\C-cb") 'ace-jump-buffer);;Use this keybind so it doesn't interfere with xml-mode nxml-balanced-close-start-tag-block
