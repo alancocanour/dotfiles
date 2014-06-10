@@ -81,7 +81,6 @@
 (add-hook 'c-mode-common-hook 'doc-mode)
 (add-hook 'grep-mode-hook 'toggle-truncate-lines)
 (require 'win-switch)
-(semantic-mode 1)
 (autoload 'company-mode "company")
 (add-hook 'prog-mode-hook 'company-mode)
 (electric-pair-mode)
@@ -119,13 +118,6 @@
 (set-face-foreground 'highlight-changes-delete nil)
 (set-face-background 'highlight-changes-delete "#4f2f2f")
 (set-face-underline 'highlight-changes-delete nil)
-
-(require 'thingatpt)
-(defun describe-at-point ()
-  "Uses semantic to describe the class currently under the point"
-  (interactive)
-  (semantic-ia-describe-class (symbol-name (symbol-at-point)))
-  )
 
 (defun indent-whole-buffer ()
   (interactive)
@@ -213,7 +205,6 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 (define-key my-keys-minor-mode-map (kbd "\C-xo") 'win-switch-dispatch)
 (define-key my-keys-minor-mode-map (kbd "M-,") 'describe-at-point)
 (define-key my-keys-minor-mode-map (kbd "\C-cb") 'ace-jump-buffer);;Use this keybind so it doesn't interfere with xml-mode nxml-balanced-close-start-tag-block
-(define-key my-keys-minor-mode-map (kbd "M-.") 'semantic-ia-fast-jump)
 (define-key my-keys-minor-mode-map (kbd "C-SPC") 'company-complete-common)
 (define-key my-keys-minor-mode-map (kbd "C-x C-b") 'ibuffer)
 (define-key my-keys-minor-mode-map (kbd "C-}") 'enlarge-window-horizontally)
@@ -264,7 +255,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(ccm-step-delay 0.01)
  '(ccm-step-size 20)
  '(column-number-mode t)
- '(company-backends (quote (company-elisp company-nxml company-css company-eclim company-semantic company-clang company-xcode company-ropemacs (company-gtags company-etags company-dabbrev-code company-keywords) company-oddmuse company-files company-dabbrev)))
+ '(company-backends (quote (company-elisp company-nxml company-css company-eclim company-clang company-xcode company-ropemacs (company-gtags company-etags company-dabbrev-code company-keywords) company-oddmuse company-files company-dabbrev)))
  '(company-idle-delay nil)
  '(compilation-ask-about-save nil)
  '(compilation-auto-jump-to-first-error t)
@@ -322,7 +313,6 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(rng-schema-locating-files (quote ("~/.emacs.d/schemas/schemas.xml" "schemas.xml")))
  '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(scroll-bar-mode nil)
- '(semantic-idle-scheduler-idle-time 1)
  '(send-mail-function (quote smtpmail-send-it))
  '(setq inhibit-startup-message t)
  '(show-paren-mode 1)
