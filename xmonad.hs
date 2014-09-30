@@ -15,7 +15,7 @@ main = do
             , terminal = "terminator"
             , borderWidth = 1
             , normalBorderColor = "#000000"
-            , manageHook = manageDocks <+> manageHook defaultConfig
+            , manageHook = myManageHook
             , layoutHook = avoidStruts . smartBorders $ layoutHook defaultConfig
             , logHook = dynamicLogWithPP defaultPP
                   { ppOutput = hPutStrLn xmobar
@@ -31,3 +31,10 @@ myKeys _ = M.fromList
            [ ((myModMask .|. shiftMask, xK_n), unsafeSpawn "pkill -USR1 redshift")
            , ((myModMask .|. shiftMask, xK_l), unsafeSpawn "physlock")
            ]
+
+myManageHook :: ManageHook
+myManageHook = composeAll [
+  className =? "Xfce4-notifyd" --> doIgnore, --Keep notifications from stealing focus
+  manageDocks,
+  manageHook defaultConfig
+  ]
