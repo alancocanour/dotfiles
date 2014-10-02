@@ -1,6 +1,7 @@
 
 import qualified Data.Map.Lazy as M
 import XMonad
+import XMonad.Actions.WindowGo
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.NoBorders
@@ -30,6 +31,8 @@ myKeys :: XConfig Layout -> M.Map (ButtonMask, KeySym) (X ())
 myKeys _ = M.fromList
            [ ((myModMask .|. shiftMask, xK_n), unsafeSpawn "pkill -USR1 redshift")
            , ((myModMask .|. shiftMask, xK_l), unsafeSpawn "physlock")
+           , ((myModMask .|. shiftMask, xK_e), runOrRaise "emacs" (className =? "Emacs"))
+           , ((myModMask .|. shiftMask, xK_b), runOrRaise "chromium" (className =? "Chromium"))
            ]
 
 myManageHook :: ManageHook
