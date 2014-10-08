@@ -311,6 +311,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(org-stuck-projects (quote ("+LEVEL=2/-DONE-CANCELED" ("TODO" "NEXT" "NEXTACTION") nil "")))
  '(org-todo-keywords (quote ((sequence "BLOCKED" "TODO" "|" "DONE" "CANCELED"))))
  '(projectile-global-mode t)
+ '(projectile-indexing-method (quote alien))
  '(rng-schema-locating-files (quote ("~/.emacs.d/schemas/schemas.xml" "schemas.xml")))
  '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(scroll-bar-mode nil)
