@@ -33,6 +33,7 @@
                wgrep
                wgrep-agp
                win-switch
+               ws-butler
                ))
 ;;Enable Marmalade repo
 (setq package-archives (quote (("gnu" . "http://elpa.gnu.org/packages/")
@@ -78,6 +79,7 @@
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
 (add-hook 'prog-mode-hook 'fic-mode)
 (add-hook 'prog-mode-hook 'capitalized-words-mode)
+(add-hook 'prog-mode-hook 'ws-butler-mode)
 (add-hook 'c-mode-common-hook 'doc-mode)
 (add-hook 'grep-mode-hook 'toggle-truncate-lines)
 (require 'win-switch)
@@ -336,7 +338,6 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(win-switch-shrink-horizontally-keys (quote ("A")))
  '(win-switch-shrink-vertically-keys (quote ("S")))
  '(win-switch-up-keys (quote ("w"))))
-
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
