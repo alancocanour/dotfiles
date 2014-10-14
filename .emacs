@@ -218,7 +218,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 (define-key my-keys-minor-mode-map (kbd "\C-ca") 'ag-project)
 (define-key my-keys-minor-mode-map (kbd "\C-cA") 'auto-revert-mode)
 (define-key my-keys-minor-mode-map (kbd "\C-cg") 'magit-status)
-(define-key my-keys-minor-mode-map (kbd "\C-cs") 'multi-eshell)
+(define-key my-keys-minor-mode-map (kbd "\C-cs") 'sort-lines)
 (define-key my-keys-minor-mode-map (kbd "\C-cc") 'calc)
 (define-key my-keys-minor-mode-map (kbd "\C-ce") 'er/expand-region)
 (define-key my-keys-minor-mode-map (kbd "\C-ci") 'ispell)
