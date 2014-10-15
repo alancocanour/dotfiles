@@ -30,6 +30,7 @@
                rainbow-mode
                rvm
                sass-mode
+               smartscan
                wgrep
                wgrep-agp
                win-switch
@@ -275,6 +276,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(global-linum-mode t)
  '(global-num3-mode nil)
  '(global-rainbow-delimiters-mode t)
+ '(global-smartscan-mode t)
  '(grep-highlight-matches (quote auto-detect))
  '(haskell-mode-hook (quote (turn-on-haskell-indentation turn-on-haskell-doc)))
  '(highlight-symbol-idle-delay 0.5)
@@ -320,6 +322,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(send-mail-function (quote smtpmail-send-it))
  '(setq inhibit-startup-message t)
  '(show-paren-mode 1)
+ '(smartscan-symbol-selector "symbol")
  '(smtpmail-default-smtp-server "relay.lumension.com")
  '(smtpmail-smtp-server "relay.lumension.com")
  '(smtpmail-smtp-service 25)
