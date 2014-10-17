@@ -25,6 +25,7 @@
                magit
                multi-eshell
                num3-mode
+               occur-x
                projectile
                rainbow-delimiters
                rainbow-mode
@@ -70,6 +71,8 @@
 (autoload 'javadoc-lookup       "javadoc-help" "Look up Java class in Javadoc."   t)
 (autoload 'javadoc-help         "javadoc-help" "Open up the Javadoc-help menu."   t)
 (autoload 'highlight-symbol-mode         "highlight-symbol" "Highlights the symbol under the cursor"   t)
+(autoload 'turn-on-occur-x-mode "occur-x" "Turn on occur-x mode" t)
+(add-hook 'occur-mode-hook 'turn-on-occur-x-mode)
 (add-hook 'text-mode-hook 'adaptive-wrap-prefix-mode)
 (add-hook 'text-mode-hook 'drag-stuff-mode)
 (add-hook 'org-mode-hook 'turn-off-drag-stuff-mode)
@@ -299,6 +302,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(next-line-add-newlines t)
  '(nxml-auto-insert-xml-declaration-flag nil)
  '(nxml-sexp-element-flag t)
+ '(occur-linenumbers-in-margin t)
  '(org-agenda-files "~/.agenda_files")
  '(org-agenda-restore-windows-after-quit t)
  '(org-babel-load-languages (quote ((emacs-lisp . t) (ditaa . t) (sh . t))))
