@@ -33,6 +33,7 @@ myKeys _ = M.fromList
            , ((myModMask .|. shiftMask, xK_l), unsafeSpawn "physlock")
            , ((myModMask .|. shiftMask, xK_e), runOrRaise "emacs" (className =? "Emacs"))
            , ((myModMask .|. shiftMask, xK_b), runOrRaise "firefox" (className =? "Firefox"))
+           , ((myModMask .|. shiftMask, xK_v), runOrRaise "mumble" (className =? "Mumble"))
            ]
 
 myManageHook :: ManageHook
