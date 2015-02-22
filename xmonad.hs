@@ -1,10 +1,11 @@
-
+import Data.Ratio
 import qualified Data.Map.Lazy as M
 import XMonad
 import XMonad.Actions.WindowGo
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Reflect
 import XMonad.Util.Run
 
 main = do
@@ -17,7 +18,7 @@ main = do
             , borderWidth = 1
             , normalBorderColor = "#000000"
             , manageHook = myManageHook
-            , layoutHook = avoidStruts . smartBorders $ layoutHook defaultConfig
+            , layoutHook = myLayoutHook
             , logHook = dynamicLogWithPP defaultPP
                   { ppOutput = hPutStrLn xmobar
                   , ppLayout = const ""
@@ -42,3 +43,9 @@ myManageHook = composeAll [
   manageDocks,
   manageHook defaultConfig
   ]
+
+
+myLayoutHook = (avoidStruts . smartBorders $ reflectHoriz tall)
+               ||| (avoidStruts . smartBorders $ Mirror tall)
+               ||| noBorders Full
+  where tall = Tall 1 (3 % 100) (1 % 2)
