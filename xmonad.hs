@@ -1,6 +1,7 @@
 import Data.Ratio
 import qualified Data.Map.Lazy as M
 import XMonad
+import XMonad.Actions.FindEmptyWorkspace
 import XMonad.Actions.WindowGo
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -35,6 +36,7 @@ myKeys _ = M.fromList
            , ((myModMask .|. shiftMask, xK_e), runOrRaise "emacs" (className =? "Emacs"))
            , ((myModMask .|. shiftMask, xK_b), runOrRaise "firefox" (className =? "Firefox"))
            , ((myModMask .|. shiftMask, xK_v), runOrRaise "mumble" (className =? "Mumble"))
+           , ((myModMask .|. shiftMask, xK_z), sendToEmptyWorkspace)
            ]
 
 myManageHook :: ManageHook
