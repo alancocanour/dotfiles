@@ -12,7 +12,7 @@ import XMonad.Util.Run
 main = do
   xmobar <- spawnPipe "/usr/bin/xmobar /home/alan/.xmobarrc"
   trayer <- spawnPipe "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --transparent true --alpha 0 --tint 0x000000 --height 16"
-  redshift <- spawnPID "redshift"
+  spawn "killall --exact --quiet redshift ; redshift"
   xmonad defaultConfig
           {   modMask = myModMask
             , terminal = "terminator"
