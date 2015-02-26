@@ -37,6 +37,7 @@ myKeys _ = M.fromList
            , ((myModMask .|. shiftMask, xK_b), runOrRaise "firefox" (className =? "Firefox"))
            , ((myModMask .|. shiftMask, xK_v), runOrRaise "mumble" (className =? "Mumble"))
            , ((myModMask .|. shiftMask, xK_z), sendToEmptyWorkspace)
+           , ((myModMask .|. shiftMask, xK_x), tagToEmptyWorkspace)
            ]
 
 myManageHook :: ManageHook
