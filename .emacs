@@ -32,6 +32,7 @@
                rvm
                sass-mode
                smartscan
+               uuidgen
                wgrep
                wgrep-agp
                win-switch
@@ -72,6 +73,7 @@
 (autoload 'javadoc-help         "javadoc-help" "Open up the Javadoc-help menu."   t)
 (autoload 'highlight-symbol-mode         "highlight-symbol" "Highlights the symbol under the cursor"   t)
 (autoload 'turn-on-occur-x-mode "occur-x" "Turn on occur-x mode" t)
+(autoload 'uuidgen "uuidgen" "Generate a UUID" t)
 (add-hook 'occur-mode-hook 'turn-on-occur-x-mode)
 (add-hook 'text-mode-hook 'adaptive-wrap-prefix-mode)
 (add-hook 'text-mode-hook 'drag-stuff-mode)
@@ -95,6 +97,7 @@
 (add-hook 'eshell-mode-hook 'company-mode)
 (mouse-avoidance-mode 'exile)
 (add-hook 'latex-mode-hook 'reftex-mode)
+(autoload 'uuidgen "uuidgen")
 (autoload 'groovy-mode "groovy-mode" "Major mode for editing Groovy code." t)
 (add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
 (add-to-list 'auto-mode-alist '("\.gradle$" . groovy-mode))
