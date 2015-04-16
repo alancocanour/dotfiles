@@ -204,6 +204,10 @@ This is the same as using \\[set-mark-command] with the prefix argument."
           (select-window first-win)
           (if this-win-2nd (other-window 1))))))
 
+(defun switch-to-scratch ()
+  (interactive)
+  (switch-to-buffer "*scratch*"))
+
 ;; Create a minor mode to hold all of my key bindings which will override bindings in major modes
 (defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
 
@@ -245,6 +249,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 (define-key my-keys-minor-mode-map (kbd "<S-SPC>") 'insert-underscore)
 (define-key my-keys-minor-mode-map (kbd "C-S-d") 'delete-pair)
 (define-key my-keys-minor-mode-map (kbd "\C-ch") 'highlight-changes-visible-mode)
+(define-key my-keys-minor-mode-map (kbd "\C-cs") 'switch-to-scratch)
 
 (define-minor-mode my-keys-minor-mode
   "A minor mode so that my key settings override annoying major modes."
