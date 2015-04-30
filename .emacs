@@ -299,6 +299,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(initial-buffer-choice "~/todo.org")
+ '(initial-major-mode (quote fundamental-mode))
  '(initial-scratch-message nil)
  '(ispell-program-name "aspell")
  '(magit-completing-read-function (quote magit-ido-completing-read))
