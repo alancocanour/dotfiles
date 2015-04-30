@@ -94,6 +94,7 @@
 (electric-pair-mode)
 (autoload 'vtl-mode "vtl")
 (add-hook 'xml-mode 'company-mode)
+(add-hook 'xml-mode 'ws-butler-mode)
 (add-hook 'eshell-mode-hook 'company-mode)
 (mouse-avoidance-mode 'exile)
 (add-hook 'latex-mode-hook 'reftex-mode)
