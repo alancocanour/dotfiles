@@ -110,6 +110,8 @@
 (add-to-list 'auto-mode-alist '("\.sass$" . sass-mode))
 (add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
 
+(setq magit-last-seen-setup-instructions "1.4.0")
+
 ;;Show buffer boundaries in left fringe
 (menu-bar-showhide-fringe-ind-left)
 
