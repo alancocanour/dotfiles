@@ -289,7 +289,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(global-centered-cursor-mode t)
  '(global-company-mode t)
  '(global-linum-mode t)
- '(global-num3-mode nil)
+ '(global-num3-mode t)
  '(global-rainbow-delimiters-mode t)
  '(global-smartscan-mode t)
  '(grep-highlight-matches (quote auto-detect))
