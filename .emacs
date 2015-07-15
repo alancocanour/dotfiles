@@ -33,6 +33,7 @@
                sass-mode
                smartscan
                uuidgen
+               vlf
                wgrep
                wgrep-agp
                win-switch
@@ -66,6 +67,7 @@
 
 (if (eq system-type 'windows-nt) (setq w32-get-true-file-attributes nil))
 
+(require 'vlf-setup);;Offer to open large files with vlf-mode
 (require 'dired-x);;Enable dired-do-find-marked-files and other fancy dired stuff
 (autoload 'centered-cursor-mode "centered-cursor-mode")
 (autoload 'adaptive-wrap-prefix-mode "adaptive-wrap")
