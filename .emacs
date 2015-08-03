@@ -255,6 +255,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 (define-key my-keys-minor-mode-map (kbd "<S-SPC>") 'insert-underscore)
 (define-key my-keys-minor-mode-map (kbd "C-S-d") 'delete-pair)
 (define-key my-keys-minor-mode-map (kbd "\C-ch") 'highlight-changes-visible-mode)
+(define-key my-keys-minor-mode-map (kbd "\C-cH") 'highlight-changes-rotate-faces)
 (define-key my-keys-minor-mode-map (kbd "\C-c\C-s") 'switch-to-scratch)
 
 (define-minor-mode my-keys-minor-mode
