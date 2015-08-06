@@ -1,0 +1,7 @@
+[user]
+	name = Alan Cocanour
+	email = alancocanour@gmail.com
+[push]
+	default = simple
+[core]
+	editor = emacsclient -tq -a=\"\"
