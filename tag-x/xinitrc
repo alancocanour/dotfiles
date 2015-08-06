@@ -1,0 +1,3 @@
+xsetroot -cursor_name left_ptr &
+xfce4-volumed &
+exec xmonad
