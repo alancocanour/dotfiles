@@ -247,7 +247,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 (define-key my-keys-minor-mode-map (kbd "<C-tab>") 'multi-eshell-switch)
 (define-key my-keys-minor-mode-map (kbd "<C-S-tab>") 'multi-eshell-go-back)
 (define-key my-keys-minor-mode-map (kbd "\C-cj") 'javadoc-lookup)
-(define-key my-keys-minor-mode-map (kbd "C-;") 'kill-start-of-line)
+(define-key my-keys-minor-mode-map (kbd "<C-backspace>") 'kill-start-of-line)
 (define-key my-keys-minor-mode-map (kbd "M-`") 'jump-to-mark)
 (define-key my-keys-minor-mode-map (kbd "C-`") 'push-mark-no-activate)
 (define-key my-keys-minor-mode-map (kbd "C-M-q") 'indent-whole-buffer)
