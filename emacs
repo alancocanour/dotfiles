@@ -1,118 +1,223 @@
-(server-start)
-
-;;Setup packages to automatically download
-(setq
- my-packages '(
-               ace-jump-mode
-               adaptive-wrap
-               ag
-               csharp-mode
-               drag-stuff
-               expand-region
-               fic-mode
-               groovy-mode
-               haskell-mode
-               highlight-symbol
-               htmlize
-               magit
-               multi-eshell
-               num3-mode
-               occur-x
-               projectile
-               rainbow-delimiters
-               smartscan
-               uuidgen
-               vlf
-               wgrep
-               wgrep-agp
-               win-switch
-               ws-butler
-               ))
-;;Enable Marmalade repo
-(setq package-archives (quote (("gnu" . "http://elpa.gnu.org/packages/")
-                               ("melpa" . "http://melpa.milkbox.net/packages/"))))
-
-;;Intsall missing packages
-(require 'cl)
 (require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
-(defun is-package-installed (p)
-  (catch 'break
-    (loop for ip in package-alist
-          do(if (equal p (car ip)) (throw 'break t) ))
-    (throw 'break nil)))
-(defun install-missing-packages ()
-  (interactive)
-  (loop for p in my-packages
-        do(unless (is-package-installed p) (package-install p))))
-;;(install-missing-packages) ;;I'm disabling this to speedup startup. I only need to run install-missing-packages once when using a new emacs install anyway
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
 
-;;Set up load path
-(let ((default-directory "~/.emacs.d/lisp/"))
-  (normal-top-level-add-to-load-path '("."))
-  (normal-top-level-add-subdirs-to-load-path))
-(let ((default-directory "~/.emacs.d/elpa/"))
-  (normal-top-level-add-subdirs-to-load-path))
+(use-package ace-jump-mode
+  :bind ("C-c C-SPC" . ace-jump-mode) )
+(use-package adaptive-wrap
+  :commands adaptive-wrap-prefix-mode
+  :init
+  (add-hook 'text-mode-hook 'adaptive-wrap-prefix-mode)
+  (add-hook 'prog-mode-hook 'adaptive-wrap-prefix-mode) )
+(use-package ag
+  :bind ("C-c a" . ag-project)
+  :init
+  (add-hook 'ag-mode-hook 'toggle-truncate-lines) )
+(use-package auto-revert-mode
+  :bind ("C-c A" . auto-revert-mode) )
+(use-package avoid
+  :commands mouse-avoidance-mode
+  :demand
+  :config
+  (mouse-avoidance-mode 'exile) )
+(use-package calc
+  :bind ("C-c c" . calc) )
+(use-package cap-words
+  :commands capitalized-words-mode
+  :init
+  (add-hook 'prog-mode-hook 'capitalized-words-mode) )
+(use-package compile
+  :bind ("C-c r" . recompile) )
+(use-package csharp-mode
+  :mode ("\\.cs$" . csharp-mode) )
+(use-package dired-x
+  :demand
+  :config
+  (require 'dired-x))
+(use-package drag-stuff
+  :commands (drag-stuff-mode turn-off-drag-stuff-mode)
+  :diminish drag-stuff-mode
+  :init
+  (add-hook 'org-mode-hook 'turn-off-drag-stuff-mode)
+  (add-hook 'prog-mode-hook 'drag-stuff-mode)
+  (add-hook 'text-mode-hook 'drag-stuff-mode) )
+(use-package electric
+  :commands electric-indent-mode electric-pair-mode
+  :init
+  (add-hook 'prog-mode-hook 'electric-indent-mode)
+  (add-hook 'prog-mode-hook 'electric-pair-mode) )
+(use-package expand-region
+  :bind ("C-c e" . er/expand-region) )
+(use-package fic-mode
+  :commands fic-mode
+  :diminish fic-mode
+  :init
+  (add-hook 'prog-mode-hook 'fic-mode) )
+(use-package flyspell
+  :commands (flyspell-mode flyspell-prog-mode)
+  :diminish flyspell-mode
+  :init
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode) )
+(use-package grep
+  :commands grep grep-find
+  :init
+  (add-hook 'grep-mode-hook 'toggle-truncate-lines) )
+(use-package groovy-mode
+  :mode (("\.groovy$" . groovy-mode)
+         ("\.gradle$" . groovy-mode))
+  :interpreter ("groovy" . groovy-mode) )
+(use-package haskell-mode
+  :mode (("\.hs$" . haskell-mode)
+         ("\.lhs" . haskell-mode))
+  :config
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-doc) )
+(use-package highlight-symbol
+  :commands highlight-symbol-mode
+  :diminish highlight-symbol-mode
+  :init
+  (add-hook 'prog-mode-hook 'highlight-symbol-mode)
+  :config (setq highlight-symbol-idle-delay 0.5) )
+(use-package hilit-chg
+  :bind
+  (("C-c h" . highlight-changes-visible-mode)
+   ("C-c H" . highlight-changes-rotate-faces))
+  :demand
+  :config
+  (make-empty-face 'highlight-changes-saved-face)
+  (setq highlight-changes-face-list '(highlight-changes-saved-face))
+  (add-hook 'write-file-hooks 'highlight-changes-rotate-faces)
+  (set-face-foreground 'highlight-changes nil)
+  (set-face-background 'highlight-changes "#2f4f2f")
+  (set-face-foreground 'highlight-changes-delete nil)
+  (set-face-background 'highlight-changes-delete "#4f2f2f")
+  (set-face-underline 'highlight-changes-delete nil)
+  (global-highlight-changes-mode t) )
+(use-package htmlize
+  :commands (htmlize-buffer htmlize-file htmlize-many-files htmlize-many-files-dired htmlize-region) )
+(use-package ibuffer
+  :bind ("C-x C-b" . ibuffer) )
+(use-package ispell
+  :bind ("C-c i" . ispell) )
+(use-package lisp
+  :bind ("C-S-d" . delete-pair) )
+(use-package magit
+  :bind ("C-c g" . magit-status)
+  :diminish magit-auto-revert-mode
+  :init
+  (setq magit-last-seen-setup-instructions "1.4.0")
+  :config
+  (setq magit-completing-read-function 'magit-ido-completing-read)
+  (setq magit-diff-refine-hunk t)
+  (setq magit-save-some-buffers nil) )
+(use-package menu-bar
+  :demand
+  :config
+  (menu-bar-showhide-fringe-ind-left) )
+(use-package multi-eshell
+  :bind
+  (("<C-tab>" . multi-eshell-switch)
+   ("<C-S-tab>" . multi-eshell-go-back))
+  :config
+  (setq multi-eshell-name "*eshell*")
+  (setq multi-eshell-shell-function '(eshell)) )
+(use-package num3-mode
+  :commands (num3-mode global-num3-mode)
+  :diminish num3-mode
+  :defer 1
+  :config
+  (global-num3-mode)
+  (set-face-attribute 'num3-face-even nil
+                      :underline t
+                      :weight 'bold) )
+(use-package occur-x
+  :commands turn-on-occur-x-mode
+  :init
+  (add-hook 'occur-mode-hook 'turn-on-occur-x-mode) )
+(use-package projectile
+  :commands projectile-global-mode
+  :demand
+  :config
+  (setq projectile-indexing-method 'alien)
+  (projectile-global-mode) )
+(use-package rainbow-delimiters
+  :commands rainbow-delimiters-mode
+  :defer 1
+  :init
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'text-mode-hook 'rainbow-delimiters-mode) )
+(use-package ruby-mode
+  :mode (("\.gemspec$" . ruby-mode)
+         ("Gemfile$" . ruby-mode)
+         ("^[Rr]akefile$" . ruby-mode)
+         ("\.rake$" . ruby-mode)) )
+(use-package server
+  :if window-system
+  :init
+  (add-hook 'after-init-hook 'server-start t) )
+(use-package simple
+  :bind
+  (("C-c SPC" . just-one-space)
+   ("<C-S-backspace>" . kill-whole-line)
+   ("C-c t" . toggle-truncate-lines)) )
+(use-package smartscan
+  :commands global-smartscan-mode
+  :defer 1
+  :config
+  (global-smartscan-mode)
+  (setq smartscan-symbol-selector "symbol") )
+(use-package sort
+  :bind ("C-c s" . sort-lines) )
+(use-package unfill
+  :bind ("M-Q" . unfill-paragraph) )
+(use-package uuidgen
+  :commands uuidgen)
+(use-package vlf
+  :defer 1
+  :config (require 'vlf-setup) )
+(use-package wgrep
+  :defer 2)
+(use-package wgrep-agp
+  :defer 2)
+(use-package win-switch
+  :commands win-switch-dispatch
+  :bind ("C-x o" . win-switch-dispatch)
+  :config
+  (setq win-switch-up-keys (quote ("w")))
+  (setq win-switch-left-keys (quote ("a")))
+  (setq win-switch-down-keys (quote ("s")))
+  (setq win-switch-right-keys (quote ("d")))
+  (setq win-switch-enlarge-vertically-keys (quote ("W")))
+  (setq win-switch-shrink-horizontally-keys (quote ("A")))
+  (setq win-switch-shrink-vertically-keys (quote ("S")))
+  (setq win-switch-enlarge-horizontally-keys (quote ("D")))
+  (setq win-switch-exit-keys (quote ("u" [return] "q"))) )
+(use-package window
+  :bind
+  (("C-S-z" . bury-buffer)
+   ("C-}" . enlarge-window-horizontally)
+   ("C-{" . shrink-window-horizontally)
+   ("C-+" . enlarge-window)
+   ("C-_" . shrink-window)) )
+(use-package ws-butler
+  :commands ws-butler-mode
+  :init
+  (add-hook 'prog-mode-hook 'ws-butler-mode)
+  (add-hook 'xml-mode 'ws-butler-mode) )
 
 (if (eq system-type 'windows-nt) (setq w32-get-true-file-attributes nil))
-
-(require 'vlf-setup);;Offer to open large files with vlf-mode
-(require 'dired-x);;Enable dired-do-find-marked-files and other fancy dired stuff
-(autoload 'adaptive-wrap-prefix-mode "adaptive-wrap")
-(autoload 'highlight-symbol-mode         "highlight-symbol" "Highlights the symbol under the cursor"   t)
-(autoload 'turn-on-occur-x-mode "occur-x" "Turn on occur-x mode" t)
-(autoload 'uuidgen "uuidgen" "Generate a UUID" t)
-(add-hook 'occur-mode-hook 'turn-on-occur-x-mode)
-(add-hook 'text-mode-hook 'adaptive-wrap-prefix-mode)
-(add-hook 'text-mode-hook 'drag-stuff-mode)
-(add-hook 'org-mode-hook 'turn-off-drag-stuff-mode)
-(add-hook 'prog-mode-hook 'electric-indent-mode)
-(add-hook 'prog-mode-hook 'adaptive-wrap-prefix-mode)
-(add-hook 'prog-mode-hook 'drag-stuff-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
-(add-hook 'prog-mode-hook 'highlight-symbol-mode)
-(add-hook 'prog-mode-hook 'fic-mode)
-(add-hook 'prog-mode-hook 'capitalized-words-mode)
-(add-hook 'prog-mode-hook 'ws-butler-mode)
-(add-hook 'grep-mode-hook 'toggle-truncate-lines)
-(require 'win-switch)
-(electric-pair-mode)
-(autoload 'vtl-mode "vtl")
-(add-hook 'xml-mode 'ws-butler-mode)
-(mouse-avoidance-mode 'exile)
-(add-hook 'latex-mode-hook 'reftex-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc)
-(autoload 'groovy-mode "groovy-mode" "Major mode for editing Groovy code." t)
-(add-to-list 'auto-mode-alist '("\.groovy$" . groovy-mode))
-(add-to-list 'auto-mode-alist '("\.gradle$" . groovy-mode))
-(add-to-list 'auto-mode-alist '("\.gemspec$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("^[Rr]akefile$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\.rake$" . ruby-mode))
-(add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
-
-(setq magit-last-seen-setup-instructions "1.4.0")
-
-;;Show buffer boundaries in left fringe
-(menu-bar-showhide-fringe-ind-left)
 
 ;;Always ask y or n instead of yes or no
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;;Keep the compilation buffer from opening in every frame
 (setq-default display-buffer-reuse-frames t)
-
-;;Highlight changes since last save
-(global-highlight-changes-mode t)
-(make-empty-face 'highlight-changes-saved-face)
-(setq highlight-changes-face-list '(highlight-changes-saved-face))
-(add-hook 'write-file-hooks 'highlight-changes-rotate-faces)
-(set-face-foreground 'highlight-changes nil)
-(set-face-background 'highlight-changes "#2f4f2f")
-(set-face-foreground 'highlight-changes-delete nil)
-(set-face-background 'highlight-changes-delete "#4f2f2f")
-(set-face-underline 'highlight-changes-delete nil)
 
 (defun indent-whole-buffer ()
   (interactive)
@@ -197,43 +302,14 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 ;; Create a minor mode to hold all of my key bindings which will override bindings in major modes
 (defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
 
-;;(define-key my-keys-minor-mode-map (kbd "C-i") 'some-function)
-(define-key my-keys-minor-mode-map (kbd "C-c SPC") 'just-one-space)
-(define-key my-keys-minor-mode-map (kbd "C-c C-SPC") 'ace-jump-mode)
-(define-key my-keys-minor-mode-map (kbd "C-S-z") 'bury-buffer)
-(define-key my-keys-minor-mode-map (kbd "\C-xo") 'win-switch-dispatch)
-(define-key my-keys-minor-mode-map (kbd "M-,") 'describe-at-point)
-(define-key my-keys-minor-mode-map (kbd "C-x C-b") 'ibuffer)
-(define-key my-keys-minor-mode-map (kbd "C-}") 'enlarge-window-horizontally)
-(define-key my-keys-minor-mode-map (kbd "C-{") 'shrink-window-horizontally)
-(define-key my-keys-minor-mode-map (kbd "C-+") 'enlarge-window)
-(define-key my-keys-minor-mode-map (kbd "C-_") 'shrink-window)
-(define-key my-keys-minor-mode-map (kbd "\C-x41") 'maximize-window)
-(define-key my-keys-minor-mode-map (kbd "\C-x42") 'minimize-window)
-(define-key my-keys-minor-mode-map (kbd "\C-ca") 'ag-project)
-(define-key my-keys-minor-mode-map (kbd "\C-cA") 'auto-revert-mode)
-(define-key my-keys-minor-mode-map (kbd "\C-cg") 'magit-status)
-(define-key my-keys-minor-mode-map (kbd "\C-cs") 'sort-lines)
-(define-key my-keys-minor-mode-map (kbd "\C-cc") 'calc)
-(define-key my-keys-minor-mode-map (kbd "\C-ce") 'er/expand-region)
-(define-key my-keys-minor-mode-map (kbd "\C-ci") 'ispell)
-(define-key my-keys-minor-mode-map (kbd "\C-cr") 'recompile)
 (define-key my-keys-minor-mode-map (kbd "\C-c|") 'toggle-window-split)
 (define-key my-keys-minor-mode-map (kbd "\C-c\\") 'toggle-window-split)
 (define-key my-keys-minor-mode-map (kbd "\C-cd") 'toggle-current-window-dedication)
-(define-key my-keys-minor-mode-map (kbd "\C-ct") 'toggle-truncate-lines)
-(define-key my-keys-minor-mode-map (kbd "<C-tab>") 'multi-eshell-switch)
-(define-key my-keys-minor-mode-map (kbd "<C-S-tab>") 'multi-eshell-go-back)
 (define-key my-keys-minor-mode-map (kbd "<C-backspace>") 'kill-start-of-line)
-(define-key my-keys-minor-mode-map (kbd "<C-S-backspace>") 'kill-whole-line)
 (define-key my-keys-minor-mode-map (kbd "M-`") 'jump-to-mark)
 (define-key my-keys-minor-mode-map (kbd "C-`") 'push-mark-no-activate)
 (define-key my-keys-minor-mode-map (kbd "C-M-q") 'indent-whole-buffer)
-(define-key my-keys-minor-mode-map (kbd "M-Q") 'unfill-paragraph)
 (define-key my-keys-minor-mode-map (kbd "<S-SPC>") 'insert-underscore)
-(define-key my-keys-minor-mode-map (kbd "C-S-d") 'delete-pair)
-(define-key my-keys-minor-mode-map (kbd "\C-ch") 'highlight-changes-visible-mode)
-(define-key my-keys-minor-mode-map (kbd "\C-cH") 'highlight-changes-rotate-faces)
 (define-key my-keys-minor-mode-map (kbd "\C-c\C-s") 'switch-to-scratch)
 
 (define-minor-mode my-keys-minor-mode
@@ -257,7 +333,6 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(compilation-ask-about-save nil)
  '(compilation-auto-jump-to-first-error t)
  '(compilation-scroll-output (quote first-error))
- '(csharp-want-flymake-fixup nil)
  '(delete-by-moving-to-trash t)
  '(dired-listing-switches "-alh")
  '(dired-recursive-deletes (quote always))
@@ -266,11 +341,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(display-time-mode t)
  '(display-time-world-list (quote (("PST8PDT7" "Pacific") ("ARZ7" "Arizona") ("MTN7MDT6" "Mountain") ("EST5EDT4" "Eastern") ("GMT" "GMT") ("IST-5:30" "Bangalore") ("CST-8" "Beijing"))))
  '(global-linum-mode t)
- '(global-num3-mode t)
- '(global-rainbow-delimiters-mode t)
- '(global-smartscan-mode t)
  '(grep-highlight-matches (quote auto-detect))
- '(highlight-symbol-idle-delay 0.5)
  '(ibuffer-default-sorting-mode (quote filename/process))
  '(ido-auto-merge-work-directories-length -1)
  '(ido-create-new-buffer (quote always))
@@ -282,12 +353,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(initial-major-mode (quote fundamental-mode))
  '(initial-scratch-message nil)
  '(ispell-program-name "aspell")
- '(magit-completing-read-function (quote magit-ido-completing-read))
- '(magit-diff-refine-hunk t)
- '(magit-save-some-buffers nil)
  '(menu-bar-mode nil)
- '(multi-eshell-name "*eshell*")
- '(multi-eshell-shell-function (quote (eshell)))
  '(next-line-add-newlines t)
  '(nxml-auto-insert-xml-declaration-flag nil)
  '(nxml-sexp-element-flag t)
@@ -298,7 +364,6 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(org-ditaa-jar-path "~/bin/ditaa0_9.jar")
  '(org-enforce-todo-dependencies t)
  '(org-export-exclude-tags (quote ("noexport" "bsd")))
- '(org-export-latex-default-packages-alist (quote (("AUTO" "inputenc" t) ("T1" "fontenc" t) ("" "fixltx2e" nil) ("" "graphicx" t) ("" "longtable" nil) ("" "float" nil) ("" "wrapfig" nil) ("" "soul" t) ("" "textcomp" t) ("" "marvosym" t) ("" "wasysym" t) ("" "latexsym" t) ("" "amssymb" t) ("" "hyperref" nil) ("" "fancyhdr" nil) "\\tolerance=1000")))
  '(org-footnote-section nil)
  '(org-hide-leading-stars t)
  '(org-highlight-sparse-tree-matches nil)
@@ -307,48 +372,26 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(org-log-into-drawer t)
  '(org-stuck-projects (quote ("+LEVEL=2/-DONE-CANCELED" ("TODO" "NEXT" "NEXTACTION") nil "")))
  '(org-todo-keywords (quote ((sequence "BLOCKED" "TODO" "|" "DONE" "CANCELED"))))
- '(projectile-global-mode t)
- '(projectile-indexing-method (quote alien))
  '(rng-schema-locating-files (quote ("~/.emacs.d/schemas/schemas.xml" "schemas.xml")))
  '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(scroll-bar-mode nil)
  '(send-mail-function (quote smtpmail-send-it))
  '(setq inhibit-startup-message t)
  '(show-paren-mode 1)
- '(smartscan-symbol-selector "symbol")
  '(sort-fold-case t t)
  '(tab-always-indent (quote complete))
  '(tab-width 4)
  '(tool-bar-mode nil)
  '(vc-follow-symlinks t)
- '(warning-suppress-types (quote ((\(undo\ discard-info\)))) nil nil "Disable warning for really big undos")
- '(win-switch-down-keys (quote ("s")))
- '(win-switch-enlarge-horizontally-keys (quote ("D")))
- '(win-switch-enlarge-vertically-keys (quote ("W")))
- '(win-switch-exit-keys (quote ("u" [return] "q")))
- '(win-switch-left-keys (quote ("a")))
- '(win-switch-right-keys (quote ("d")))
- '(win-switch-shrink-horizontally-keys (quote ("A")))
- '(win-switch-shrink-vertically-keys (quote ("S")))
- '(win-switch-up-keys (quote ("w"))))
-
+ '(warning-suppress-types (quote ((\(undo\ discard-info\)))) nil nil "Disable warning for really big undos"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:background "#000000" :foreground "#FFFFFF"))))
- '(num3-face-even ((t (:underline t :weight bold))))
- '(rainbow-delimiters-depth-1-face ((t (:foreground "hot pink"))))
- '(rainbow-delimiters-depth-2-face ((t (:foreground "cyan"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "lime green"))))
- '(rainbow-delimiters-depth-4-face ((t (:foreground "royal blue"))))
- '(rainbow-delimiters-depth-5-face ((t (:foreground "red"))))
- '(rainbow-delimiters-depth-6-face ((t (:foreground "aquamarine1"))))
- '(rainbow-delimiters-depth-7-face ((t (:foreground "DarkOliveGreen2"))))
- '(rainbow-delimiters-depth-8-face ((t (:foreground "dark violet"))))
- '(rainbow-delimiters-unmatched-face ((t nil))))
-(put 'dired-find-alternate-file 'disabled nil)
-(put 'narrow-to-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
+ (put 'dired-find-alternate-file 'disabled nil)
+ (put 'narrow-to-region 'disabled nil)
+ (put 'upcase-region 'disabled nil)
+ (put 'downcase-region 'disabled nil)
+ )
