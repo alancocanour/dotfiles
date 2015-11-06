@@ -3,34 +3,23 @@
 ;;Setup packages to automatically download
 (setq
  my-packages '(
-               ace-jump-buffer
                ace-jump-mode
                adaptive-wrap
                ag
-               auctex
-               centered-cursor-mode
-               company
                csharp-mode
-               doc-mode
                drag-stuff
-               enclose
                expand-region
                fic-mode
                groovy-mode
-               haml-mode
                haskell-mode
                highlight-symbol
                htmlize
-               javadoc-help
                magit
                multi-eshell
                num3-mode
                occur-x
                projectile
                rainbow-delimiters
-               rainbow-mode
-               rvm
-               sass-mode
                smartscan
                uuidgen
                vlf
@@ -69,10 +58,7 @@
 
 (require 'vlf-setup);;Offer to open large files with vlf-mode
 (require 'dired-x);;Enable dired-do-find-marked-files and other fancy dired stuff
-(autoload 'centered-cursor-mode "centered-cursor-mode")
 (autoload 'adaptive-wrap-prefix-mode "adaptive-wrap")
-(autoload 'javadoc-lookup       "javadoc-help" "Look up Java class in Javadoc."   t)
-(autoload 'javadoc-help         "javadoc-help" "Open up the Javadoc-help menu."   t)
 (autoload 'highlight-symbol-mode         "highlight-symbol" "Highlights the symbol under the cursor"   t)
 (autoload 'turn-on-occur-x-mode "occur-x" "Turn on occur-x mode" t)
 (autoload 'uuidgen "uuidgen" "Generate a UUID" t)
@@ -88,16 +74,11 @@
 (add-hook 'prog-mode-hook 'fic-mode)
 (add-hook 'prog-mode-hook 'capitalized-words-mode)
 (add-hook 'prog-mode-hook 'ws-butler-mode)
-(add-hook 'c-mode-common-hook 'doc-mode)
 (add-hook 'grep-mode-hook 'toggle-truncate-lines)
 (require 'win-switch)
-(autoload 'company-mode "company")
-(add-hook 'prog-mode-hook 'company-mode)
 (electric-pair-mode)
 (autoload 'vtl-mode "vtl")
-(add-hook 'xml-mode 'company-mode)
 (add-hook 'xml-mode 'ws-butler-mode)
-(add-hook 'eshell-mode-hook 'company-mode)
 (mouse-avoidance-mode 'exile)
 (add-hook 'latex-mode-hook 'reftex-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
@@ -109,7 +90,6 @@
 (add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("^[Rr]akefile$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\.rake$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\.sass$" . sass-mode))
 (add-to-list 'interpreter-mode-alist '("groovy" . groovy-mode))
 
 (setq magit-last-seen-setup-instructions "1.4.0")
@@ -223,8 +203,6 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 (define-key my-keys-minor-mode-map (kbd "C-S-z") 'bury-buffer)
 (define-key my-keys-minor-mode-map (kbd "\C-xo") 'win-switch-dispatch)
 (define-key my-keys-minor-mode-map (kbd "M-,") 'describe-at-point)
-(define-key my-keys-minor-mode-map (kbd "\C-cb") 'ace-jump-buffer);;Use this keybind so it doesn't interfere with xml-mode nxml-balanced-close-start-tag-block
-(define-key my-keys-minor-mode-map (kbd "C-SPC") 'company-complete-common)
 (define-key my-keys-minor-mode-map (kbd "C-x C-b") 'ibuffer)
 (define-key my-keys-minor-mode-map (kbd "C-}") 'enlarge-window-horizontally)
 (define-key my-keys-minor-mode-map (kbd "C-{") 'shrink-window-horizontally)
@@ -246,7 +224,6 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 (define-key my-keys-minor-mode-map (kbd "\C-ct") 'toggle-truncate-lines)
 (define-key my-keys-minor-mode-map (kbd "<C-tab>") 'multi-eshell-switch)
 (define-key my-keys-minor-mode-map (kbd "<C-S-tab>") 'multi-eshell-go-back)
-(define-key my-keys-minor-mode-map (kbd "\C-cj") 'javadoc-lookup)
 (define-key my-keys-minor-mode-map (kbd "<C-backspace>") 'kill-start-of-line)
 (define-key my-keys-minor-mode-map (kbd "<C-S-backspace>") 'kill-whole-line)
 (define-key my-keys-minor-mode-map (kbd "M-`") 'jump-to-mark)
@@ -277,8 +254,6 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(ccm-step-delay 0.01)
  '(ccm-step-size 20)
  '(column-number-mode t)
- '(company-backends (quote (company-elisp company-nxml company-css company-eclim company-clang company-xcode company-ropemacs (company-gtags company-etags company-dabbrev-code company-keywords) company-oddmuse company-files company-dabbrev)))
- '(company-idle-delay nil)
  '(compilation-ask-about-save nil)
  '(compilation-auto-jump-to-first-error t)
  '(compilation-scroll-output (quote first-error))
@@ -290,8 +265,6 @@ This is the same as using \\[set-mark-command] with the prefix argument."
  '(display-time-default-load-average nil)
  '(display-time-mode t)
  '(display-time-world-list (quote (("PST8PDT7" "Pacific") ("ARZ7" "Arizona") ("MTN7MDT6" "Mountain") ("EST5EDT4" "Eastern") ("GMT" "GMT") ("IST-5:30" "Bangalore") ("CST-8" "Beijing"))))
- '(global-centered-cursor-mode t)
- '(global-company-mode t)
  '(global-linum-mode t)
  '(global-num3-mode t)
  '(global-rainbow-delimiters-mode t)
