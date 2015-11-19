@@ -19,6 +19,18 @@
   :bind ("C-c a" . ag-project)
   :init
   (add-hook 'ag-mode-hook 'toggle-truncate-lines) )
+(use-package alan
+  :load-path "lisp/"
+  :bind
+  (("C-c |" . toggle-window-split)
+   ("C-c \\" . toggle-window-split)
+   ("C-c d" . toggle-current-window-dedication)
+   ("<C-backspace>" . kill-start-of-line)
+   ("M-`" . jump-to-mark)
+   ("C-`" . push-mark-no-activate)
+   ("C-M-q" . indent-whole-buffer)
+   ("<S-SPC>" . insert-underscore)
+   ("C-c C-s" . switch-to-scratch)) )
 (use-package auto-revert-mode
   :bind ("C-c A" . auto-revert-mode) )
 (use-package avoid
@@ -218,105 +230,6 @@
 
 ;;Keep the compilation buffer from opening in every frame
 (setq-default display-buffer-reuse-frames t)
-
-(defun indent-whole-buffer ()
-  (interactive)
-  (delete-trailing-whitespace)
-  (indent-region (point-min) (point-max) nil)
-  (untabify (point-min) (point-max)))
-
-(defun push-mark-no-activate ()
-  "Pushes `point' to `mark-ring' and does not activate the region
-Equivalent to \\[set-mark-command] when \\[transient-mark-mode] is disabled"
-  (interactive)
-  (push-mark (point) t nil)
-  (message "Pushed mark to ring"))
-
-(defun jump-to-mark ()
-  "Jumps to the local mark, respecting the `mark-ring' order.
-This is the same as using \\[set-mark-command] with the prefix argument."
-  (interactive)
-  (set-mark-command 1))
-
-(defun kill-start-of-line ()
-  "kill from point to start of line"
-  (interactive)
-  (kill-line 0))
-
-(defun uniquify-region-lines (beg end)
-  "Remove duplicate adjacent lines in region."
-  (interactive "*r")
-  (save-excursion
-    (goto-char beg)
-    (while (re-search-forward "^\\(.*\n\\)\\1+" end t)
-      (replace-match "\\1"))))
-
-(defun uniquify-buffer-lines ()
-  "Remove duplicate adjacent lines in the current buffer."
-  (interactive)
-  (uniquify-region-lines (point-min) (point-max)))
-
-(defun insert-underscore ()
-  "Insert an underscore at point"
-  (interactive)
-  (insert-char ?_ 1))
-
-(defun toggle-current-window-dedication ()
-  (interactive)
-  (let* ((window    (selected-window))
-         (dedicated (window-dedicated-p window)))
-    (set-window-dedicated-p window (not dedicated))
-    (message "Window %sdedicated to %s"
-             (if dedicated "no longer " "")
-             (buffer-name))))
-
-(defun toggle-window-split ()
-  (interactive)
-  (if (= (count-windows) 2)
-      (let* ((this-win-buffer (window-buffer))
-             (next-win-buffer (window-buffer (next-window)))
-             (this-win-edges (window-edges (selected-window)))
-             (next-win-edges (window-edges (next-window)))
-             (this-win-2nd (not (and (<= (car this-win-edges)
-                                         (car next-win-edges))
-                                     (<= (cadr this-win-edges)
-                                         (cadr next-win-edges)))))
-             (splitter
-              (if (= (car this-win-edges)
-                     (car (window-edges (next-window))))
-                  'split-window-horizontally
-                'split-window-vertically)))
-        (delete-other-windows)
-        (let ((first-win (selected-window)))
-          (funcall splitter)
-          (if this-win-2nd (other-window 1))
-          (set-window-buffer (selected-window) this-win-buffer)
-          (set-window-buffer (next-window) next-win-buffer)
-          (select-window first-win)
-          (if this-win-2nd (other-window 1))))))
-
-(defun switch-to-scratch ()
-  (interactive)
-  (switch-to-buffer "*scratch*"))
-
-;; Create a minor mode to hold all of my key bindings which will override bindings in major modes
-(defvar my-keys-minor-mode-map (make-keymap) "my-keys-minor-mode keymap.")
-
-(define-key my-keys-minor-mode-map (kbd "\C-c|") 'toggle-window-split)
-(define-key my-keys-minor-mode-map (kbd "\C-c\\") 'toggle-window-split)
-(define-key my-keys-minor-mode-map (kbd "\C-cd") 'toggle-current-window-dedication)
-(define-key my-keys-minor-mode-map (kbd "<C-backspace>") 'kill-start-of-line)
-(define-key my-keys-minor-mode-map (kbd "M-`") 'jump-to-mark)
-(define-key my-keys-minor-mode-map (kbd "C-`") 'push-mark-no-activate)
-(define-key my-keys-minor-mode-map (kbd "C-M-q") 'indent-whole-buffer)
-(define-key my-keys-minor-mode-map (kbd "<S-SPC>") 'insert-underscore)
-(define-key my-keys-minor-mode-map (kbd "\C-c\C-s") 'switch-to-scratch)
-
-(define-minor-mode my-keys-minor-mode
-  "A minor mode so that my key settings override annoying major modes."
-  t "" 'my-keys-minor-mode-map)
-
-(my-keys-minor-mode 1)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
