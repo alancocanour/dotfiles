@@ -21,6 +21,7 @@
   (add-hook 'ag-mode-hook 'toggle-truncate-lines) )
 (use-package alan
   :load-path "lisp/"
+  :demand
   :bind
   (("C-c |" . toggle-window-split)
    ("C-c \\" . toggle-window-split)
@@ -30,9 +31,31 @@
    ("C-`" . push-mark-no-activate)
    ("C-M-q" . indent-whole-buffer)
    ("<S-SPC>" . insert-underscore)
-   ("C-c C-s" . switch-to-scratch)) )
+   ("C-c C-s" . switch-to-scratch))
+  :config
+  ;;Indent
+  (setq tab-always-indent 'complete)
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil)
+
+  ;;Startup
+  (setq inhibit-startup-screen t)
+  (setq initial-buffer-choice "~/todo.org")
+  (setq initial-major-mode 'fundamental-mode)
+  (setq initial-scratch-message nil)
+
+  ;;C Source code variables
+  (tool-bar-mode 0)
+  (setq delete-by-moving-to-trash t)
+
+  ;;Settings that don't belong anywhere else
+  (defalias 'yes-or-no-p 'y-or-n-p)
+  (if (eq system-type 'windows-nt) (setq w32-get-true-file-attributes nil))
+  (setq-default display-buffer-reuse-frames t) )
 (use-package auto-revert-mode
-  :bind ("C-c A" . auto-revert-mode) )
+  :bind ("C-c A" . auto-revert-mode)
+  :config
+  (setq auto-revert-verbose nil) )
 (use-package avoid
   :commands mouse-avoidance-mode
   :demand
@@ -45,9 +68,20 @@
   :init
   (add-hook 'prog-mode-hook 'capitalized-words-mode) )
 (use-package compile
-  :bind ("C-c r" . recompile) )
+  :commands compile recompile
+  :bind ("C-c r" . recompile)
+  :config
+  (setq compilation-always-kill t)
+  (setq compilation-ask-about-save nil)
+  (setq compilation-auto-jump-to-first-error t)
+  (setq compilation-scroll-output 'first-error) )
 (use-package csharp-mode
   :mode ("\\.cs$" . csharp-mode) )
+(use-package dired
+  :commands dired
+  :config
+  (setq dired-listing-switches "-alh")
+  (setq dired-recursive-deletes 'always) )
 (use-package dired-x
   :demand
   :config
@@ -71,6 +105,11 @@
   :diminish fic-mode
   :init
   (add-hook 'prog-mode-hook 'fic-mode) )
+(use-package files
+  :demand
+  :config
+  (setq backup-directory-alist '(("." . "~/.saves")))
+  (setq safe-local-variable-values '((encoding . utf-8))) )
 (use-package flyspell
   :commands (flyspell-mode flyspell-prog-mode)
   :diminish flyspell-mode
@@ -79,7 +118,9 @@
 (use-package grep
   :commands grep grep-find
   :init
-  (add-hook 'grep-mode-hook 'toggle-truncate-lines) )
+  (add-hook 'grep-mode-hook 'toggle-truncate-lines)
+  :config
+  (setq grep-highlight-matches 'auto-detect) )
 (use-package groovy-mode
   :mode (("\.groovy$" . groovy-mode)
          ("\.gradle$" . groovy-mode))
@@ -114,9 +155,24 @@
 (use-package htmlize
   :commands (htmlize-buffer htmlize-file htmlize-many-files htmlize-many-files-dired htmlize-region) )
 (use-package ibuffer
-  :bind ("C-x C-b" . ibuffer) )
+  :bind ("C-x C-b" . ibuffer)
+  :config
+  (setq ibuffer-default-sorting-mode 'filename/process) )
+(use-package ido
+  :demand
+  :config
+  (setq ido-auto-merge-work-directories-length -1)
+  (setq ido-create-new-buffer 'always)
+  (setq ido-default-buffer-method 'selected-window)
+  (ido-mode) )
 (use-package ispell
-  :bind ("C-c i" . ispell) )
+  :bind ("C-c i" . ispell)
+  :config
+  (setq ispell-program-name "aspell") )
+(use-package linum
+  :demand
+  :config
+  (global-linum-mode) )
 (use-package lisp
   :bind ("C-S-d" . delete-pair) )
 (use-package magit
@@ -130,6 +186,7 @@
 (use-package menu-bar
   :demand
   :config
+  (menu-bar-mode 0)
   (menu-bar-showhide-fringe-ind-left) )
 (use-package multi-eshell
   :bind
@@ -147,10 +204,35 @@
   (set-face-attribute 'num3-face-even nil
                       :underline t
                       :weight 'bold) )
+(use-package nxml-mode
+  :mode ("\.xml" . nxml-mode)
+  :config
+  (setq nxml-auto-insert-xml-declaration-flag nil)
+  (setq nxml-sexp-element-flag t) )
 (use-package occur-x
   :commands turn-on-occur-x-mode
   :init
-  (add-hook 'occur-mode-hook 'turn-on-occur-x-mode) )
+  (add-hook 'occur-mode-hook 'turn-on-occur-x-mode)
+  :config
+  (setq occur-linenumbers-in-margin t) )
+(use-package org
+  :commands (org-mode orgtbl-mode)
+  :config
+  (setq org-agenda-files "~/.agenda_files")
+  (setq org-agenda-restore-windows-after-quit t)
+  (setq org-enforce-todo-dependencies t)
+  (setq org-footnote-section nil)
+  (setq org-hide-leading-stars t)
+  (setq org-highlight-sparse-tree-matches nil)
+  (setq org-indirect-buffer-display 'current-window)
+  (setq org-log-done 'time)
+  (setq org-log-into-drawer t)
+  (setq org-stuck-projects '("+LEVEL=2/-DONE-CANCELED" ("TODO" "NEXT" "NEXTACTION") nil ""))
+  (setq org-todo-keywords '((sequence "BLOCKED" "TODO" "|" "DONE" "CANCELED"))) )
+(use-package paren
+  :demand
+  :config
+  (setq show-paren-mode 1) )
 (use-package projectile
   :commands projectile-global-mode
   :demand
@@ -168,6 +250,10 @@
          ("Gemfile$" . ruby-mode)
          ("^[Rr]akefile$" . ruby-mode)
          ("\.rake$" . ruby-mode)) )
+(use-package scroll-bar
+  :demand
+  :config
+  (scroll-bar-mode 0) )
 (use-package server
   :if window-system
   :init
@@ -176,15 +262,30 @@
   :bind
   (("C-c SPC" . just-one-space)
    ("<C-S-backspace>" . kill-whole-line)
-   ("C-c t" . toggle-truncate-lines)) )
+   ("C-c t" . toggle-truncate-lines))
+  :config
+  (setq column-number-mode t)
+  (setq next-line-add-newlines t) )
 (use-package smartscan
   :commands global-smartscan-mode
   :defer 1
   :config
   (global-smartscan-mode)
   (setq smartscan-symbol-selector "symbol") )
+(use-package solar
+  :commands calendar-sunrise-sunset
+  :config
+  (setq calendar-latitude 33.45)
+  (setq calendar-longitude -112.066667) )
 (use-package sort
   :bind ("C-c s" . sort-lines) )
+(use-package time
+  :defer 1
+  :config
+  (setq display-time-day-and-date t)
+  (setq display-time-default-load-average nil)
+  (setq display-time-world-list '(("PST8PDT7" "Pacific") ("ARZ7" "Arizona") ("MTN7MDT6" "Mountain") ("EST5EDT4" "Eastern") ("GMT" "GMT") ("IST-5:30" "Bangalore") ("CST-8" "Beijing")))
+  (display-time-mode) )
 (use-package unfill
   :bind ("M-Q" . unfill-paragraph) )
 (use-package uuidgen
@@ -222,80 +323,6 @@
   (add-hook 'prog-mode-hook 'ws-butler-mode)
   (add-hook 'xml-mode 'ws-butler-mode) )
 
-(if (eq system-type 'windows-nt) (setq w32-get-true-file-attributes nil))
-
-;;Always ask y or n instead of yes or no
-(defalias 'yes-or-no-p 'y-or-n-p)
-
-;;Keep the compilation buffer from opening in every frame
-(setq-default display-buffer-reuse-frames t)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(auto-revert-verbose nil)
- '(backup-directory-alist (quote (("." . "~/.saves"))))
- '(calendar-latitude 33.45)
- '(calendar-longitude -112.066667)
- '(ccm-step-delay 0.01)
- '(ccm-step-size 20)
- '(column-number-mode t)
- '(compilation-ask-about-save nil)
- '(compilation-auto-jump-to-first-error t)
- '(compilation-scroll-output (quote first-error))
- '(delete-by-moving-to-trash t)
- '(dired-listing-switches "-alh")
- '(dired-recursive-deletes (quote always))
- '(display-time-day-and-date t)
- '(display-time-default-load-average nil)
- '(display-time-mode t)
- '(display-time-world-list (quote (("PST8PDT7" "Pacific") ("ARZ7" "Arizona") ("MTN7MDT6" "Mountain") ("EST5EDT4" "Eastern") ("GMT" "GMT") ("IST-5:30" "Bangalore") ("CST-8" "Beijing"))))
- '(global-linum-mode t)
- '(grep-highlight-matches (quote auto-detect))
- '(ibuffer-default-sorting-mode (quote filename/process))
- '(ido-auto-merge-work-directories-length -1)
- '(ido-create-new-buffer (quote always))
- '(ido-default-buffer-method (quote selected-window))
- '(ido-mode (quote both) nil (ido))
- '(indent-tabs-mode nil)
- '(inhibit-startup-screen t)
- '(initial-buffer-choice "~/todo.org")
- '(initial-major-mode (quote fundamental-mode))
- '(initial-scratch-message nil)
- '(ispell-program-name "aspell")
- '(menu-bar-mode nil)
- '(next-line-add-newlines t)
- '(nxml-auto-insert-xml-declaration-flag nil)
- '(nxml-sexp-element-flag t)
- '(occur-linenumbers-in-margin t)
- '(org-agenda-files "~/.agenda_files")
- '(org-agenda-restore-windows-after-quit t)
- '(org-babel-load-languages (quote ((emacs-lisp . t) (ditaa . t) (sh . t))))
- '(org-ditaa-jar-path "~/bin/ditaa0_9.jar")
- '(org-enforce-todo-dependencies t)
- '(org-export-exclude-tags (quote ("noexport" "bsd")))
- '(org-footnote-section nil)
- '(org-hide-leading-stars t)
- '(org-highlight-sparse-tree-matches nil)
- '(org-indirect-buffer-display (quote current-window))
- '(org-log-done (quote time))
- '(org-log-into-drawer t)
- '(org-stuck-projects (quote ("+LEVEL=2/-DONE-CANCELED" ("TODO" "NEXT" "NEXTACTION") nil "")))
- '(org-todo-keywords (quote ((sequence "BLOCKED" "TODO" "|" "DONE" "CANCELED"))))
- '(rng-schema-locating-files (quote ("~/.emacs.d/schemas/schemas.xml" "schemas.xml")))
- '(safe-local-variable-values (quote ((encoding . utf-8))))
- '(scroll-bar-mode nil)
- '(send-mail-function (quote smtpmail-send-it))
- '(setq inhibit-startup-message t)
- '(show-paren-mode 1)
- '(sort-fold-case t t)
- '(tab-always-indent (quote complete))
- '(tab-width 4)
- '(tool-bar-mode nil)
- '(vc-follow-symlinks t)
- '(warning-suppress-types (quote ((\(undo\ discard-info\)))) nil nil "Disable warning for really big undos"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
