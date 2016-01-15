@@ -140,7 +140,9 @@
 (use-package hilit-chg
   :bind
   (("C-c h" . highlight-changes-visible-mode)
-   ("C-c H" . highlight-changes-rotate-faces))
+   ("C-c H" . highlight-changes-rotate-faces)
+   ("C-M-n" . highlight-changes-next-change)
+   ("C-M-p" . highlight-changes-previous-change))
   :demand
   :config
   (make-empty-face 'highlight-changes-saved-face)
