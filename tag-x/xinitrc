@@ -1,4 +1,2 @@
 export GTK_THEME=Arc-Dark
-xsetroot -cursor_name left_ptr &
-xfce4-volumed &
 exec xmonad
