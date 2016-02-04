@@ -227,10 +227,8 @@
   (setq org-hide-leading-stars t)
   (setq org-highlight-sparse-tree-matches nil)
   (setq org-indirect-buffer-display 'current-window)
-  (setq org-log-done 'time)
   (setq org-log-into-drawer t)
-  (setq org-stuck-projects '("+LEVEL=2/-DONE-CANCELED" ("TODO" "NEXT" "NEXTACTION") nil ""))
-  (setq org-todo-keywords '((sequence "BLOCKED" "TODO" "|" "DONE" "CANCELED"))) )
+  (setq org-todo-keywords '((sequence "TODO(!)" "|" "DONE(!)"))) )
 (use-package paren
   :demand
   :config
