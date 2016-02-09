@@ -52,6 +52,8 @@
   (defalias 'yes-or-no-p 'y-or-n-p)
   (if (eq system-type 'windows-nt) (setq w32-get-true-file-attributes nil))
   (setq-default display-buffer-reuse-frames t) )
+(use-package ascii
+  :commands (ascii-on ascii-off ascii-display ascii-customize) )
 (use-package auto-revert-mode
   :bind ("C-c A" . auto-revert-mode)
   :config
