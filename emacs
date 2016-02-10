@@ -206,6 +206,8 @@
   :config
   (global-num3-mode)
   (set-face-attribute 'num3-face-even nil
+  		      :background "unspecified"
+		      :foreground "unspecified"
                       :underline t
                       :weight 'bold) )
 (use-package nxml-mode
