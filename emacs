@@ -159,11 +159,13 @@
   (make-empty-face 'highlight-changes-saved-face)
   (setq highlight-changes-face-list '(highlight-changes-saved-face))
   (add-hook 'write-file-hooks 'highlight-changes-rotate-faces)
-  (set-face-foreground 'highlight-changes nil)
-  (set-face-background 'highlight-changes "#2f4f2f")
-  (set-face-foreground 'highlight-changes-delete nil)
-  (set-face-background 'highlight-changes-delete "#4f2f2f")
-  (set-face-underline 'highlight-changes-delete nil)
+  (set-face-attribute 'highlight-changes nil
+		      :foreground "unspecified"
+		      :background "#2f4f2f")
+  (set-face-attribute 'highlight-changes-delete nil
+		      :foreground "unspecified"
+		      :background "#4f2f2f"
+		      :underline nil)
   (global-highlight-changes-mode t) )
 (use-package htmlize
   :commands (htmlize-buffer htmlize-file htmlize-many-files htmlize-many-files-dired htmlize-region) )
