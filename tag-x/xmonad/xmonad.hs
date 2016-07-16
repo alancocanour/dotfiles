@@ -15,7 +15,7 @@ main = do
   spawn "killall --exact --quiet redshift ; redshift"
   xmonad defaultConfig
           {   modMask = myModMask
-            , terminal = "terminator"
+            , terminal = "urxvt -e tmux new-session"
             , borderWidth = 1
             , normalBorderColor = "#000000"
             , manageHook = myManageHook

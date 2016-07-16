@@ -1,0 +1,39 @@
+URxvt.scrollBar: false
+URxvt.pointerBlank: true
+URxvt.internalBorder: 0
+URxvt.background: black
+URxvt.foreground: white
+URxvt.font: xft:bitstream vera sans mono:size=11:antialias=true
+URxvt.boldFont: xft:bitstream vera sans mono:bold:size=11:antialias=true
+
+!! black dark/light
+*color0: #000000
+*color8: #222222
+
+!! red dark/light
+*color1: #aa0000
+*color9: #dd0000
+
+!! green dark/light
+*color2: #00aa00
+*color10: #00dd00
+
+!! yellow dark/light
+*color3: #aaaa00
+*color11: #dddd00
+
+!! blue dark/light
+*color4: #2222aa
+*color12: #2222dd
+
+!! magenta dark/light
+*color5: #aa00aa
+*color13: #dd00dd
+
+!! cyan dark/light
+*color6: #00aaaa
+*color14: #00dddd
+
+!! white dark/light
+*color7: #dddddd
+*color15: #ffffff
