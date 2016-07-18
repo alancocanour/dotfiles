@@ -47,7 +47,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export EDITOR="emacsclient -tq -a=emacs"
+export EDITOR="emacs -nw"
 export BROWSER="firefox"
 
 if [ -d "$HOME/bin" ] ; then

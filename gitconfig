@@ -3,5 +3,3 @@
 	email = alancocanour@gmail.com
 [push]
 	default = simple
-[core]
-	editor = emacsclient -tq -a=\"\"

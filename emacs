@@ -40,7 +40,6 @@
 
   ;;Startup
   (setq inhibit-startup-screen t)
-  (setq initial-buffer-choice "~/todo.org")
   (setq initial-major-mode 'fundamental-mode)
   (setq initial-scratch-message nil)
 
@@ -269,10 +268,6 @@
   :demand
   :config
   (scroll-bar-mode 0) )
-(use-package server
-  :if window-system
-  :init
-  (add-hook 'after-init-hook 'server-start t) )
 (use-package simple
   :bind
   (("C-c SPC" . just-one-space)
