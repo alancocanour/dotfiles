@@ -9,6 +9,14 @@
     (package-install 'use-package))
   (require 'use-package))
 
+;; Set up auto-compile before other packages so they will all be auto-compiled
+(use-package auto-compile
+  :ensure t
+  :demand
+  :config
+  (setq load-prefer-newer t)
+  (auto-compile-on-load-mode))
+
 (use-package ace-jump-mode
   :bind ("C-c C-SPC" . ace-jump-mode) )
 (use-package adaptive-wrap
