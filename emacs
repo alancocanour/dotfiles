@@ -243,15 +243,13 @@
 (use-package org
   :commands (org-mode orgtbl-mode)
   :config
-  (setq org-agenda-files "~/.agenda_files")
-  (setq org-agenda-restore-windows-after-quit t)
   (setq org-enforce-todo-dependencies t)
   (setq org-footnote-section nil)
   (setq org-hide-leading-stars t)
   (setq org-highlight-sparse-tree-matches nil)
   (setq org-indirect-buffer-display 'current-window)
-  (setq org-log-into-drawer t)
-  (setq org-todo-keywords '((sequence "TODO(!)" "|" "DONE(!)"))) )
+  (setq org-startup-indented 'globally)
+  (setq org-todo-keywords '((sequence "TODO" "|" "DONE"))) )
 (use-package paren
   :demand
   :config
