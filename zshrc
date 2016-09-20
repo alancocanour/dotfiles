@@ -49,6 +49,7 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR="emacs -nw"
 export BROWSER="firefox"
+export LESS="-i"
 
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
