@@ -9,6 +9,8 @@
     (package-install 'use-package))
   (require 'use-package))
 
+(setq use-package-always-ensure t)
+
 ;; Set up auto-compile before other packages so they will all be auto-compiled
 (use-package auto-compile
   :ensure t
@@ -29,6 +31,7 @@
   :init
   (add-hook 'ag-mode-hook 'toggle-truncate-lines) )
 (use-package alan
+  :ensure nil
   :load-path "lisp/"
   :demand
   :bind
@@ -98,11 +101,13 @@
   :mode ("\\.cs$" . csharp-mode) )
 (use-package dired
   :commands dired
+  :ensure nil
   :config
   (setq dired-listing-switches "-alh")
   (setq dired-recursive-deletes 'always) )
 (use-package dired-x
   :demand
+  :ensure nil
   :config
   (require 'dired-x))
 (use-package drag-stuff
@@ -126,6 +131,7 @@
   (add-hook 'prog-mode-hook 'fic-mode) )
 (use-package files
   :demand
+  :ensure nil
   :config
   (setq backup-directory-alist '(("." . "~/.saves")))
   (setq safe-local-variable-values '((encoding . utf-8))) )
@@ -197,7 +203,8 @@
   :config
   (global-linum-mode) )
 (use-package lisp
-  :bind ("C-S-d" . delete-pair) )
+  :bind ("C-S-d" . delete-pair)
+  :ensure nil )
 (use-package magit
   :bind ("C-c g" . magit-status)
   :init
@@ -208,6 +215,7 @@
   (setq magit-save-some-buffers nil) )
 (use-package menu-bar
   :demand
+  :ensure nil
   :config
   (menu-bar-mode 0)
   (menu-bar-showhide-fringe-ind-left) )
@@ -231,6 +239,7 @@
                       :weight 'bold) )
 (use-package nxml-mode
   :mode ("\.xml" . nxml-mode)
+  :ensure nil
   :config
   (setq nxml-auto-insert-xml-declaration-flag nil)
   (setq nxml-sexp-element-flag t) )
@@ -273,6 +282,7 @@
          ("\.rake$" . ruby-mode)) )
 (use-package scroll-bar
   :demand
+  :ensure nil
   :config
   (scroll-bar-mode 0) )
 (use-package simple
@@ -280,6 +290,7 @@
   (("C-c SPC" . just-one-space)
    ("<C-S-backspace>" . kill-whole-line)
    ("C-c t" . toggle-truncate-lines))
+  :ensure nil
   :config
   (setq column-number-mode t)
   (setq next-line-add-newlines t) )
@@ -291,6 +302,7 @@
   (setq smartscan-symbol-selector "symbol") )
 (use-package solar
   :commands calendar-sunrise-sunset
+  :ensure nil
   :config
   (setq calendar-latitude 33.45)
   (setq calendar-longitude -112.066667) )
@@ -333,7 +345,8 @@
    ("C-}" . enlarge-window-horizontally)
    ("C-{" . shrink-window-horizontally)
    ("C-+" . enlarge-window)
-   ("C-_" . shrink-window)) )
+   ("C-_" . shrink-window))
+  :ensure nil )
 (use-package ws-butler
   :commands ws-butler-mode
   :init
