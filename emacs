@@ -71,7 +71,7 @@
   (setq-default display-buffer-reuse-frames t) )
 (use-package ascii
   :commands (ascii-on ascii-off ascii-display ascii-customize) )
-(use-package auto-revert-mode
+(use-package autorevert
   :bind ("C-c A" . auto-revert-mode)
   :config
   (setq auto-revert-verbose nil) )
@@ -312,7 +312,7 @@
   :config (require 'vlf-setup) )
 (use-package wgrep
   :defer 2)
-(use-package wgrep-agp
+(use-package wgrep-ag
   :defer 2)
 (use-package win-switch
   :commands win-switch-dispatch
