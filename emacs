@@ -174,10 +174,10 @@
   (setq highlight-changes-face-list '(highlight-changes-saved-face))
   (add-hook 'write-file-hooks 'highlight-changes-rotate-faces)
   (set-face-attribute 'highlight-changes nil
-		      :foreground "unspecified"
+		      :foreground 'unspecified
 		      :background "#2f4f2f")
   (set-face-attribute 'highlight-changes-delete nil
-		      :foreground "unspecified"
+		      :foreground 'unspecified
 		      :background "#4f2f2f"
 		      :underline nil)
   (global-highlight-changes-mode t) )
