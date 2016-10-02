@@ -85,10 +85,6 @@
   (mouse-avoidance-mode 'exile) )
 (use-package calc
   :bind ("C-c c" . calc) )
-(use-package cap-words
-  :commands capitalized-words-mode
-  :init
-  (add-hook 'prog-mode-hook 'capitalized-words-mode) )
 (use-package compile
   :commands compile recompile
   :bind ("C-c r" . recompile)
