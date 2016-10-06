@@ -191,6 +191,8 @@
   (setq ido-create-new-buffer 'always)
   (setq ido-default-buffer-method 'selected-window)
   (ido-mode) )
+(use-package ido-completing-read+
+  :commands ido-completing-read+)
 (use-package ispell
   :bind ("C-c i" . ispell)
   :config
