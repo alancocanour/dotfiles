@@ -54,6 +54,7 @@
   (setq inhibit-startup-screen t)
   (setq initial-major-mode 'fundamental-mode)
   (setq initial-scratch-message nil)
+  (setq custom-file "~/.emacs.d/custom.el")
 
   ;;C Source code variables
   (tool-bar-mode 0)
@@ -129,7 +130,7 @@
   :demand
   :ensure nil
   :config
-  (setq backup-directory-alist '(("." . "~/.saves")))
+  (setq backup-directory-alist '(("." . "~/.emacs.d/saves")))
   (setq safe-local-variable-values '((encoding . utf-8))) )
 (use-package flyspell
   :commands (flyspell-mode flyspell-prog-mode)
