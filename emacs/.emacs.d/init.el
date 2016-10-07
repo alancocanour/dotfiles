@@ -119,6 +119,10 @@
   :init
   (add-hook 'prog-mode-hook 'electric-indent-mode)
   (add-hook 'prog-mode-hook 'electric-pair-mode) )
+(use-package elfeed
+  :commands elfeed
+  :config
+  (setq elfeed-feeds (read-lines "~/.elfeed/feeds")) )
 (use-package expand-region
   :bind ("C-c e" . er/expand-region) )
 (use-package fic-mode
