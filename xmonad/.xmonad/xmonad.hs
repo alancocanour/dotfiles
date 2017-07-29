@@ -13,18 +13,18 @@ main = do
   xmobar <- spawnPipe "/usr/bin/xmobar /home/alan/.xmobarrc"
   trayer <- spawnPipe "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --transparent true --alpha 0 --tint 0x000000 --height 16"
   spawn "killall --exact --quiet redshift ; redshift"
-  xmonad defaultConfig
+  xmonad def
           {   modMask = myModMask
             , terminal = "urxvt -e tmux new-session"
             , borderWidth = 1
             , normalBorderColor = "#000000"
             , manageHook = myManageHook
             , layoutHook = myLayoutHook
-            , logHook = dynamicLogWithPP defaultPP
+            , logHook = dynamicLogWithPP def
                   { ppOutput = hPutStrLn xmobar
                   , ppLayout = const ""
                   }
-            , keys = myKeys <+> keys defaultConfig
+            , keys = myKeys <+> keys def
             }
 
 myModMask = mod4Mask
@@ -43,7 +43,7 @@ myManageHook :: ManageHook
 myManageHook = composeAll [
   className =? "Xfce4-notifyd" --> doIgnore, --Keep notifications from stealing focus
   manageDocks,
-  manageHook defaultConfig
+  manageHook def
   ]
 
 
