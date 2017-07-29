@@ -1,7 +1,9 @@
 Config { font = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"  
      , bgColor = "#000000"  
      , fgColor = "grey"  
-     , position = Static { xpos = 0 , ypos = 0, width = 1800, height = 16 }  
+     , position = TopP 0 500
+     , lowerOnStart = True
+     , overrideRedirect = False
      , commands = [ Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10  
                   , Run Network "eth0" ["-H","0","--high","green"] 10   
                   , Run Memory ["-t","Mem: <usedratio>%"] 10  
