@@ -63,7 +63,9 @@ alias ga="git annex"
 alias pu="pushd"
 alias po="popd"
 
-eval `dircolors ~/.dir_colors`
+if [ -e "$HOME/.dir_colors" ] ; then
+    eval `dircolors ~/.dir_colors`
+fi
 
 set HISTCONTROL=ignoreboth
 
