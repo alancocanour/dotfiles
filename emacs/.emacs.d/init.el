@@ -73,8 +73,6 @@
   (defalias 'yes-or-no-p 'y-or-n-p)
   (if (eq system-type 'windows-nt) (setq w32-get-true-file-attributes nil))
   (setq-default display-buffer-reuse-frames t) )
-(use-package ascii
-  :commands (ascii-on ascii-off ascii-display ascii-customize) )
 (use-package autorevert
   :bind ("C-c A" . auto-revert-mode)
   :config
@@ -125,11 +123,6 @@
   (setq elfeed-feeds (read-lines "~/.elfeed/feeds")) )
 (use-package expand-region
   :bind ("C-c e" . er/expand-region) )
-(use-package fic-mode
-  :commands fic-mode
-  :diminish fic-mode
-  :init
-  (add-hook 'prog-mode-hook 'fic-mode) )
 (use-package files
   :demand
   :ensure nil
@@ -222,13 +215,6 @@
   :config
   (menu-bar-mode 0)
   (menu-bar-showhide-fringe-ind-left) )
-(use-package multi-eshell
-  :bind
-  (("<C-tab>" . multi-eshell-switch)
-   ("<C-S-tab>" . multi-eshell-go-back))
-  :config
-  (setq multi-eshell-name "*eshell*")
-  (setq multi-eshell-shell-function '(eshell)) )
 (use-package num3-mode
   :commands (num3-mode global-num3-mode)
   :diminish num3-mode
