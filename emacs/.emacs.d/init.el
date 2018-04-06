@@ -341,3 +341,9 @@
   :init
   (add-hook 'prog-mode-hook 'ws-butler-mode)
   (add-hook 'xml-mode 'ws-butler-mode) )
+(use-package yasnippet
+  :commands yas-minor-mode
+  :init
+  (add-hook 'prog-mode-hook 'yas-minor-mode)
+  (use-package java-snippets)
+  (use-package haskell-snippets) )
