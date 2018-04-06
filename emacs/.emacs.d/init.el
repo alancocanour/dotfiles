@@ -150,6 +150,11 @@
   :config
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
   (add-hook 'haskell-mode-hook 'turn-on-haskell-doc) )
+(use-package helm
+  :commands helm-mode
+  :init (helm-mode)
+  :bind (("M-x" . helm-M-x)
+	 ("C-x C-f" . helm-find-files)) )
 (use-package highlight-symbol
   :commands highlight-symbol-mode
   :diminish highlight-symbol-mode
@@ -181,15 +186,6 @@
   :bind ("C-x C-b" . ibuffer)
   :config
   (setq ibuffer-default-sorting-mode 'filename/process) )
-(use-package ido
-  :demand
-  :config
-  (setq ido-auto-merge-work-directories-length -1)
-  (setq ido-create-new-buffer 'always)
-  (setq ido-default-buffer-method 'selected-window)
-  (ido-mode) )
-(use-package ido-completing-read+
-  :commands ido-completing-read+)
 (use-package ispell
   :bind ("C-c i" . ispell)
   :config
