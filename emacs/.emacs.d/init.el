@@ -154,7 +154,9 @@
   :commands helm-mode
   :init (helm-mode)
   :bind (("M-x" . helm-M-x)
-	 ("C-x C-f" . helm-find-files)) )
+	 ("C-x C-f" . helm-find-files)
+	 ("C-c C-i" . helm-imenu)
+	 ("C-x C-b" . helm-buffers-list)) )
 (use-package highlight-symbol
   :commands highlight-symbol-mode
   :diminish highlight-symbol-mode
@@ -182,10 +184,6 @@
   (global-highlight-changes-mode t) )
 (use-package htmlize
   :commands (htmlize-buffer htmlize-file htmlize-many-files htmlize-many-files-dired htmlize-region) )
-(use-package ibuffer
-  :bind ("C-x C-b" . ibuffer)
-  :config
-  (setq ibuffer-default-sorting-mode 'filename/process) )
 (use-package ispell
   :bind ("C-c i" . ispell)
   :config
