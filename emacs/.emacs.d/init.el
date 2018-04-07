@@ -339,6 +339,6 @@
 (use-package yasnippet
   :commands yas-minor-mode
   :init
-  (add-hook 'prog-mode-hook 'yas-minor-mode)
   (use-package java-snippets)
-  (use-package haskell-snippets) )
+  (use-package haskell-snippets)
+  (yas-global-mode) )
