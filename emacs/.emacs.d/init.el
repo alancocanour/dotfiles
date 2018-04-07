@@ -251,6 +251,7 @@
   :demand
   :config
   (setq projectile-indexing-method 'alien)
+  (setq projectile-completion-system 'helm)
   (projectile-global-mode) )
 (use-package rainbow-delimiters
   :commands rainbow-delimiters-mode
