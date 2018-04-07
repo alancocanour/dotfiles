@@ -1,3 +1,6 @@
+;; Load configuration for the local machine if it exists
+(load "~/.emacs.d/local.el" t)
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
