@@ -154,6 +154,7 @@
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
   (add-hook 'haskell-mode-hook 'turn-on-haskell-doc) )
 (use-package helm
+  :ensure t
   :commands helm-mode
   :init (helm-mode)
   :bind (("M-x" . helm-M-x)
