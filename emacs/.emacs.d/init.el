@@ -46,7 +46,8 @@
    ("C-`" . push-mark-no-activate)
    ("C-M-q" . indent-whole-buffer)
    ("<S-SPC>" . insert-underscore)
-   ("C-c C-s" . switch-to-scratch))
+   ("C-c C-s" . switch-to-scratch)
+   ("C-S-l" . recenter-horizontal))
   :config
   ;;Indent
   (setq tab-always-indent 'complete)
@@ -62,6 +63,8 @@
   ;;C Source code variables
   (tool-bar-mode 0)
   (setq delete-by-moving-to-trash t)
+  (setq hscroll-margin 0)
+  (setq hscroll-step 1)
 
   ;;Enable off-by-default commands
   (put 'dired-find-alternate-file 'disabled nil)

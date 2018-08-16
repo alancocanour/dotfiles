@@ -80,3 +80,26 @@ This is the same as using \\[set-mark-command] with the prefix argument."
   (interactive)
   (switch-to-buffer "*scratch*"))
 
+(defvar recenter-horizintal-last-op nil)
+
+(defvar recenter-horizintal-positions '(middle left right))
+
+(defun recenter-horizintal ()
+  ""
+  (interactive)
+  (setq recenter-horizintal-last-op
+	(if (eq this-command last-command)
+	    (car (or (cdr (member recenter-horizintal-last-op recenter-horizintal-positions))
+		     recenter-horizintal-positions))
+	  (car recenter-horizintal-positions)))
+  (let* ((cur (current-column))
+	 (width (window-text-width))
+	 (half-width (/ width 2)))
+    (cond ((eq recenter-horizintal-last-op 'middle)
+	   (set-window-hscroll (selected-window) (- cur half-width)))
+	  ((eq recenter-horizintal-last-op 'left)
+	   (set-window-hscroll (selected-window) cur))
+	  ((eq  recenter-horizintal-last-op 'right)
+	   (set-window-hscroll (selected-window) (- cur width)))
+	  )
+    (redraw-frame)))
