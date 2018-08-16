@@ -156,7 +156,8 @@
   :bind (("M-x" . helm-M-x)
 	 ("C-x C-f" . helm-find-files)
 	 ("C-c C-i" . helm-imenu)
-	 ("C-x C-b" . helm-buffers-list)) )
+	 ("C-x C-b" . helm-buffers-list)
+	 ("C-c C-h" . helm-resume)) )
 (use-package highlight-symbol
   :commands highlight-symbol-mode
   :diminish highlight-symbol-mode
