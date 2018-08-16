@@ -262,7 +262,17 @@
   :defer 1
   :init
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'text-mode-hook 'rainbow-delimiters-mode) )
+  (add-hook 'text-mode-hook 'rainbow-delimiters-mode)
+  :custom-face
+  (rainbow-delimiters-depth-1-face ((t (:foreground "hot pink"))))
+  (rainbow-delimiters-depth-2-face ((t (:foreground "cyan"))))
+  (rainbow-delimiters-depth-3-face ((t (:foreground "lime green"))))
+  (rainbow-delimiters-depth-4-face ((t (:foreground "royal blue"))))
+  (rainbow-delimiters-depth-5-face ((t (:foreground "red"))))
+  (rainbow-delimiters-depth-6-face ((t (:foreground "aquamarine1"))))
+  (rainbow-delimiters-depth-7-face ((t (:foreground "DarkOliveGreen2"))))
+  (rainbow-delimiters-depth-8-face ((t (:foreground "dark violet"))))
+  (rainbow-delimiters-unmatched-face ((t (:background "magenta" :foreground "#88090B")))) )
 (use-package ruby-mode
   :mode (("\.gemspec$" . ruby-mode)
          ("Gemfile$" . ruby-mode)
