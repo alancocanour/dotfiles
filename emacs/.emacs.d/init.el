@@ -163,7 +163,8 @@
 	 ("C-x C-f" . helm-find-files)
 	 ("C-c C-i" . helm-imenu)
 	 ("C-x C-b" . helm-buffers-list)
-	 ("C-c C-h" . helm-resume)) )
+	 ("C-c C-h" . helm-resume)
+	 ("C-S-y" . helm-show-kill-ring)) )
 (use-package highlight-symbol
   :commands highlight-symbol-mode
   :diminish highlight-symbol-mode
