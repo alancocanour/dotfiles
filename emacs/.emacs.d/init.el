@@ -117,10 +117,8 @@
 (use-package drag-stuff
   :commands (drag-stuff-mode turn-off-drag-stuff-mode)
   :diminish drag-stuff-mode
-  :init
-  (add-hook 'org-mode-hook 'turn-off-drag-stuff-mode)
-  (add-hook 'prog-mode-hook 'drag-stuff-mode)
-  (add-hook 'text-mode-hook 'drag-stuff-mode) )
+  :bind (("<M-up>" . drag-stuff-up)
+	 ("<M-down>" . drag-stuff-down)) )
 (use-package electric
   :commands electric-indent-mode electric-pair-mode
   :init
