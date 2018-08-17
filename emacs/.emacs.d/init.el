@@ -24,6 +24,9 @@
 
 (use-package ace-jump-mode
   :bind ("C-c C-SPC" . ace-jump-mode) )
+(use-package ace-window
+  :bind (("C-x o" . ace-window)
+	 ("M-o" . ace-window)) )
 (use-package adaptive-wrap
   :commands adaptive-wrap-prefix-mode
   :init
@@ -324,19 +327,6 @@
   :defer 2)
 (use-package wgrep-ag
   :defer 2)
-(use-package win-switch
-  :commands win-switch-dispatch
-  :bind ("C-x o" . win-switch-dispatch)
-  :config
-  (setq win-switch-up-keys (quote ("w")))
-  (setq win-switch-left-keys (quote ("a")))
-  (setq win-switch-down-keys (quote ("s")))
-  (setq win-switch-right-keys (quote ("d")))
-  (setq win-switch-enlarge-vertically-keys (quote ("W")))
-  (setq win-switch-shrink-horizontally-keys (quote ("A")))
-  (setq win-switch-shrink-vertically-keys (quote ("S")))
-  (setq win-switch-enlarge-horizontally-keys (quote ("D")))
-  (setq win-switch-exit-keys (quote ("u" [return] "q"))) )
 (use-package window
   :bind
   (("C-S-z" . bury-buffer)
