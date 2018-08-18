@@ -253,12 +253,13 @@
   :config
   (setq show-paren-mode 1) )
 (use-package projectile
-  :commands projectile-global-mode
+  :commands projectile-mode
   :demand
   :config
   (setq projectile-indexing-method 'alien)
   (setq projectile-completion-system 'helm)
-  (projectile-global-mode) )
+  (projectile-mode)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map) )
 (use-package rainbow-delimiters
   :commands rainbow-delimiters-mode
   :defer 1
