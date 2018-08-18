@@ -137,6 +137,8 @@
   :diminish flyspell-mode
   :init
   (add-hook 'prog-mode-hook 'flyspell-prog-mode) )
+(use-package graphviz-dot-mode
+  :mode (("\.dot$" . graphviz-dot-mode)) )
 (use-package grep
   :commands grep grep-find
   :init
@@ -247,7 +249,11 @@
   (setq org-highlight-sparse-tree-matches nil)
   (setq org-indirect-buffer-display 'current-window)
   (setq org-startup-indented 'globally)
-  (setq org-todo-keywords '((sequence "TODO" "|" "DONE"))) )
+  (setq org-todo-keywords '((sequence "TODO" "|" "DONE")))
+  (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((dot . t))) )
 (use-package paren
   :demand
   :config
