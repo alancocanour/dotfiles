@@ -222,13 +222,10 @@
   :commands (num3-mode global-num3-mode)
   :diminish num3-mode
   :defer 1
+  :custom-face
+  (num3-face-even ((t (:underline t :weight bold))))
   :config
-  (global-num3-mode)
-  (set-face-attribute 'num3-face-even nil
-  		      :background "unspecified"
-		      :foreground "unspecified"
-                      :underline t
-                      :weight 'bold) )
+  (global-num3-mode) )
 (use-package nxml-mode
   :mode ("\.xml" . nxml-mode)
   :ensure nil
