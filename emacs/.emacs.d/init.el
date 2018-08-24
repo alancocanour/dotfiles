@@ -164,7 +164,8 @@
 	 ("C-c C-i" . helm-imenu)
 	 ("C-x C-b" . helm-buffers-list)
 	 ("C-c C-h" . helm-resume)
-	 ("C-S-y" . helm-show-kill-ring)) )
+	 ("C-S-y" . helm-show-kill-ring)
+	 ("M-s M-o" . helm-occur)) )
 (use-package highlight-symbol
   :commands highlight-symbol-mode
   :diminish highlight-symbol-mode
