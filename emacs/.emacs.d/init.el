@@ -25,6 +25,7 @@
 (use-package ace-jump-mode
   :bind ("C-c C-SPC" . ace-jump-mode) )
 (use-package ace-window
+  :ensure
   :bind (("C-x o" . ace-window)
 	 ("M-o" . ace-window)) )
 (use-package adaptive-wrap
