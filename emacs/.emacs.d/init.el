@@ -155,7 +155,10 @@
          ("\.lhs" . haskell-mode))
   :config
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-  (add-hook 'haskell-mode-hook 'turn-on-haskell-doc) )
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-doc)
+  (use-package intero
+    :commands intero-mode)
+  (add-hook 'haskell-mode-hook 'intero-mode) )
 (use-package helm
   :ensure t
   :commands helm-mode
