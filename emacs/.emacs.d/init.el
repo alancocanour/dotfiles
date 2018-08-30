@@ -263,6 +263,7 @@
   :config
   (setq projectile-indexing-method 'alien)
   (setq projectile-completion-system 'helm)
+  (setq projectile-switch-project-action 'magit-status)
   (projectile-mode)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map) )
 (use-package rainbow-delimiters
