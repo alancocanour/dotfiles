@@ -1,31 +1,24 @@
 ;; Load configuration for the local machine if it exists
 (load (expand-file-name "local.el" user-emacs-directory) t)
 
-(require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/"))
-(package-initialize)
-(eval-when-compile
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
-  (require 'use-package))
-
-(setq use-package-always-ensure t)
-
-;; Set up auto-compile before other packages so they will all be auto-compiled
-(use-package auto-compile
-  :ensure t
-  :demand
-  :config
-  (setq load-prefer-newer t)
-  (auto-compile-on-load-mode))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+(setq straight-use-package-by-default t)
+(straight-use-package 'use-package)
 
 (use-package ace-jump-mode
   :bind ("C-c C-SPC" . ace-jump-mode) )
 (use-package ace-window
-  :ensure
   :bind (("C-x o" . ace-window)
 	 ("M-o" . ace-window)) )
 (use-package adaptive-wrap
@@ -38,7 +31,7 @@
   :init
   (add-hook 'ag-mode-hook 'toggle-truncate-lines) )
 (use-package alan
-  :ensure nil
+  :straight nil
   :load-path "lisp/"
   :demand
   :bind
@@ -105,14 +98,14 @@
 (use-package csharp-mode
   :mode ("\\.cs$" . csharp-mode) )
 (use-package dired
+  :straight nil
   :commands dired
-  :ensure nil
   :config
   (setq dired-listing-switches "-alh")
   (setq dired-recursive-deletes 'always) )
 (use-package dired-x
+  :straight nil
   :demand
-  :ensure nil
   :config
   (require 'dired-x))
 (use-package drag-stuff
@@ -128,8 +121,8 @@
 (use-package expand-region
   :bind ("C-c e" . er/expand-region) )
 (use-package files
+  :straight nil
   :demand
-  :ensure nil
   :config
   (setq backup-directory-alist `(("." . ,(expand-file-name "~/.emacs.d/saves" user-emacs-directory))))
   (setq safe-local-variable-values '((encoding . utf-8))) )
@@ -157,7 +150,6 @@
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
   (add-hook 'haskell-mode-hook 'turn-on-haskell-doc) )
 (use-package helm
-  :ensure t
   :commands helm-mode
   :init (helm-mode)
   :bind (("M-x" . helm-M-x)
@@ -203,8 +195,8 @@
   :config
   (global-linum-mode) )
 (use-package lisp
-  :bind ("C-S-d" . delete-pair)
-  :ensure nil )
+  :straight nil
+  :bind ("C-S-d" . delete-pair) )
 (use-package magit
   :bind ("C-c g" . magit-status)
   :init
@@ -214,8 +206,8 @@
   (setq magit-diff-refine-hunk t)
   (setq magit-save-some-buffers nil) )
 (use-package menu-bar
+  :straight nil
   :demand
-  :ensure nil
   :config
   (menu-bar-mode 0)
   (menu-bar-showhide-fringe-ind-left) )
@@ -228,8 +220,8 @@
   :config
   (global-num3-mode) )
 (use-package nxml-mode
+  :straight nil
   :mode ("\.xml" . nxml-mode)
-  :ensure nil
   :config
   (setq nxml-auto-insert-xml-declaration-flag nil)
   (setq nxml-sexp-element-flag t) )
@@ -290,16 +282,16 @@
          ("^[Rr]akefile$" . ruby-mode)
          ("\.rake$" . ruby-mode)) )
 (use-package scroll-bar
+  :straight nil
   :demand
-  :ensure nil
   :config
   (scroll-bar-mode 0) )
 (use-package simple
+  :straight nil
   :bind
   (("C-c SPC" . just-one-space)
    ("<C-S-backspace>" . kill-whole-line)
    ("C-c t" . toggle-truncate-lines))
-  :ensure nil
   :config
   (setq column-number-mode t)
   (setq next-line-add-newlines t) )
@@ -310,8 +302,8 @@
   (global-smartscan-mode)
   (setq smartscan-symbol-selector "symbol") )
 (use-package solar
+  :straight nil
   :commands calendar-sunrise-sunset
-  :ensure nil
   :config
   (setq calendar-latitude 33.45)
   (setq calendar-longitude -112.066667) )
@@ -336,13 +328,13 @@
 (use-package wgrep-ag
   :defer 2)
 (use-package window
+  :straight nil
   :bind
   (("C-S-z" . bury-buffer)
    ("C-}" . enlarge-window-horizontally)
    ("C-{" . shrink-window-horizontally)
    ("C-+" . enlarge-window)
-   ("C-_" . shrink-window))
-  :ensure nil )
+   ("C-_" . shrink-window)) )
 (use-package ws-butler
   :commands ws-butler-mode
   :init
