@@ -1,5 +1,5 @@
 ;; Load configuration for the local machine if it exists
-(load "~/.emacs.d/local.el" t)
+(load (expand-file-name "local.el" user-emacs-directory) t)
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -62,7 +62,7 @@
   (setq inhibit-startup-screen t)
   (setq initial-major-mode 'fundamental-mode)
   (setq initial-scratch-message nil)
-  (setq custom-file "~/.emacs.d/custom.el")
+  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
   ;;C Source code variables
   (tool-bar-mode 0)
@@ -131,7 +131,7 @@
   :demand
   :ensure nil
   :config
-  (setq backup-directory-alist '(("." . "~/.emacs.d/saves")))
+  (setq backup-directory-alist `(("." . ,(expand-file-name "~/.emacs.d/saves" user-emacs-directory))))
   (setq safe-local-variable-values '((encoding . utf-8))) )
 (use-package flyspell
   :commands (flyspell-mode flyspell-prog-mode)
