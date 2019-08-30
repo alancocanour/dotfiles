@@ -16,6 +16,9 @@
 (setq straight-use-package-by-default t)
 (straight-use-package 'use-package)
 
+(use-package hydra
+  :commands defhydra )
+
 (use-package ace-jump-mode
   :bind ("C-c C-SPC" . ace-jump-mode) )
 (use-package ace-window
@@ -113,6 +116,22 @@
   :diminish drag-stuff-mode
   :bind (("<M-up>" . drag-stuff-up)
 	 ("<M-down>" . drag-stuff-down)) )
+(use-package dumb-jump
+  :commands (dumb-jump-go dumb-jump-back dumb-jump-quick-look dumb-jump-go-other-window dumb-jump-go-prefer-external dumb-jump-go-prefer-external-other-window dumb-jump-go-prompt)
+  :init
+  (defhydra dumb-jump-hydra (:color blue :columns 3)
+    "Dumb Jump"
+    ("j" dumb-jump-go "Go")
+    ("o" dumb-jump-go-other-window "Other window")
+    ("e" dumb-jump-go-prefer-external "Go external")
+    ("x" dumb-jump-go-prefer-external-other-window "Go external other window")
+    ("i" dumb-jump-go-prompt "Prompt")
+    ("l" dumb-jump-quick-look "Quick look")
+    ("b" dumb-jump-back "Back"))
+  (bind-keys* ("C-M-." . dumb-jump-hydra/body)
+	      ("M-." . dumb-jump-go))
+  :config
+  (set-variable 'dumb-jump-force-searcher 'ag) )
 (use-package electric
   :commands electric-indent-mode electric-pair-mode
   :init
