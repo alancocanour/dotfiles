@@ -37,17 +37,6 @@
   :straight nil
   :load-path "lisp/"
   :demand
-  :bind
-  (("C-c |" . toggle-window-split)
-   ("C-c \\" . toggle-window-split)
-   ("C-c d" . toggle-current-window-dedication)
-   ("<C-backspace>" . kill-start-of-line)
-   ("M-`" . jump-to-mark)
-   ("C-`" . push-mark-no-activate)
-   ("C-M-q" . indent-whole-buffer)
-   ("<S-SPC>" . insert-underscore)
-   ("C-c C-s" . switch-to-scratch)
-   ("C-S-l" . recenter-horizontal))
   :config
   ;;Indent
   (setq tab-always-indent 'complete)
@@ -78,7 +67,17 @@
 		      :foreground "#FFFFFF")
   (defalias 'yes-or-no-p 'y-or-n-p)
   (if (eq system-type 'windows-nt) (setq w32-get-true-file-attributes nil))
-  (setq-default display-buffer-reuse-frames t) )
+  (setq-default display-buffer-reuse-frames t)
+  (bind-keys* ("C-c |" . toggle-window-split)
+	      ("C-c \\" . toggle-window-split)
+	      ("C-c d" . toggle-current-window-dedication)
+	      ("<C-backspace>" . kill-start-of-line)
+	      ("M-`" . jump-to-mark)
+	      ("C-`" . push-mark-no-activate)
+	      ("C-M-q" . indent-whole-buffer)
+	      ("<S-SPC>" . insert-underscore)
+	      ("C-c C-s" . switch-to-scratch)
+	      ("C-S-l" . recenter-horizontal)))
 (use-package autorevert
   :bind ("C-c A" . auto-revert-mode)
   :config
@@ -170,14 +169,15 @@
   (add-hook 'haskell-mode-hook 'turn-on-haskell-doc) )
 (use-package helm
   :commands helm-mode
-  :init (helm-mode)
-  :bind (("M-x" . helm-M-x)
-	 ("C-x C-f" . helm-find-files)
-	 ("C-c C-i" . helm-imenu)
-	 ("C-x C-b" . helm-buffers-list)
-	 ("C-c C-h" . helm-resume)
-	 ("C-S-y" . helm-show-kill-ring)
-	 ("M-s M-o" . helm-occur)) )
+  :init
+  (helm-mode)
+  (bind-keys* ("M-x" . helm-M-x)
+	      ("C-x C-f" . helm-find-files)
+	      ("C-c C-i" . helm-imenu)
+	      ("C-x C-b" . helm-buffers-list)
+	      ("C-c C-h" . helm-resume)
+	      ("C-S-y" . helm-show-kill-ring)
+	      ("M-s M-o" . helm-occur)) )
 (use-package highlight-symbol
   :commands highlight-symbol-mode
   :diminish highlight-symbol-mode
