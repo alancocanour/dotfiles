@@ -305,6 +305,12 @@
   :demand
   :config
   (scroll-bar-mode 0) )
+(use-package shackle
+  :config
+  (setq shackle-rules
+	'((compilation-mode :noselect t :align 'left)
+	  (help-mode :select t :other t :align 'left))
+	))
 (use-package simple
   :straight nil
   :bind
