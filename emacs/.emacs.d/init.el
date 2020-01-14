@@ -128,9 +128,7 @@
     ("l" dumb-jump-quick-look "Quick look")
     ("b" dumb-jump-back "Back"))
   (bind-keys* ("C-M-." . dumb-jump-hydra/body)
-	      ("M-." . dumb-jump-go))
-  :config
-  (set-variable 'dumb-jump-force-searcher 'ag) )
+	      ("M-." . dumb-jump-go)) )
 (use-package electric
   :commands electric-indent-mode electric-pair-mode
   :init
