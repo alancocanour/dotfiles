@@ -219,7 +219,7 @@
   :init
   (setq magit-last-seen-setup-instructions "1.4.0")
   :config
-  (setq magit-completing-read-function 'magit-ido-completing-read)
+  (setq magit-completing-read-function 'helm--completing-read-default)
   (setq magit-diff-refine-hunk t)
   (setq magit-save-some-buffers nil) )
 (use-package menu-bar
