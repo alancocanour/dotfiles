@@ -89,6 +89,11 @@
   (mouse-avoidance-mode 'exile) )
 (use-package calc
   :bind ("C-c c" . calc) )
+(use-package cc-mode
+  :straight nil
+  :commands java-mode
+  :init
+  (add-hook 'java-mode-hook 'subword-mode))
 (use-package compile
   :commands compile recompile
   :bind ("C-c r" . recompile)
