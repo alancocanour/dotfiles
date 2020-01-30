@@ -103,3 +103,6 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 	   (set-window-hscroll (selected-window) (- cur width)))
 	  )
     (redraw-frame)))
+
+(defun highlight-todo ()
+    (highlight-phrase "TODO"))

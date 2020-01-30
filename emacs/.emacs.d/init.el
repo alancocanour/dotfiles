@@ -68,6 +68,7 @@
   (defalias 'yes-or-no-p 'y-or-n-p)
   (if (eq system-type 'windows-nt) (setq w32-get-true-file-attributes nil))
   (setq-default display-buffer-reuse-frames t)
+  (add-hook 'prog-mode-hook 'highlight-todo)
   (bind-keys* ("C-c |" . toggle-window-split)
 	      ("C-c \\" . toggle-window-split)
 	      ("C-c d" . toggle-current-window-dedication)
