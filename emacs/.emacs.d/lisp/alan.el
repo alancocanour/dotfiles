@@ -78,7 +78,7 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 
 (defun switch-to-scratch ()
   (interactive)
-  (switch-to-buffer "*scratch*"))
+  (switch-to-buffer (generate-new-buffer "*scratch*")))
 
 (defvar notes-filename "~/notes.org")
 
