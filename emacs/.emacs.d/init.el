@@ -78,6 +78,7 @@
 	      ("C-M-q" . indent-whole-buffer)
 	      ("<S-SPC>" . insert-underscore)
 	      ("C-c C-s" . switch-to-scratch)
+	      ("C-c C-n" . switch-to-notes)
 	      ("C-S-l" . recenter-horizontal)))
 (use-package autorevert
   :bind ("C-c A" . auto-revert-mode)
@@ -228,6 +229,8 @@
   (setq magit-completing-read-function 'helm--completing-read-default)
   (setq magit-diff-refine-hunk t)
   (setq magit-save-some-buffers nil) )
+(use-package markdown-mode
+  :mode (("\\.md" . markdown-mode)) )
 (use-package menu-bar
   :straight nil
   :demand

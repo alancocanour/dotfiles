@@ -80,6 +80,13 @@ This is the same as using \\[set-mark-command] with the prefix argument."
   (interactive)
   (switch-to-buffer "*scratch*"))
 
+(defvar notes-filename "~/notes.org")
+
+(defun switch-to-notes ()
+  (interactive)
+  (switch-to-buffer (or (find-buffer-visiting notes-filename)
+			(find-file notes-filename))))
+
 (defvar recenter-horizontal-last-op nil)
 
 (defvar recenter-horizontal-positions '(middle left right))
