@@ -50,6 +50,7 @@ plugins=(
     gitignore
     gradle
     rsync
+    stack
     sudo
     systemd
 )
