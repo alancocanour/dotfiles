@@ -102,8 +102,8 @@
   :config
   (setq compilation-always-kill t)
   (setq compilation-ask-about-save nil)
-  (setq compilation-auto-jump-to-first-error t)
-  (setq compilation-scroll-output 'first-error) )
+  (setq compilation-auto-jump-to-first-error nil)
+  (setq compilation-scroll-output t) )
 (use-package csharp-mode
   :mode ("\\.cs$" . csharp-mode) )
 (use-package dired
