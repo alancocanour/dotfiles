@@ -53,6 +53,7 @@ plugins=(
     stack
     sudo
     systemd
+    z
 )
 
 source $ZSH/oh-my-zsh.sh
