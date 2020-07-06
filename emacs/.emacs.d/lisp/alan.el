@@ -113,3 +113,12 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 
 (defun highlight-todo ()
     (highlight-phrase "TODO"))
+
+(defun list-packages-melpa ()
+  (interactive)
+  (if (not (alist-get "melpa" package-archives nil))
+      (progn
+	(require 'package)
+	(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+	(package-initialize)))
+  (package-list-packages))
