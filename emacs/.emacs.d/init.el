@@ -237,6 +237,8 @@
   :config
   (menu-bar-mode 0)
   (menu-bar-showhide-fringe-ind-left) )
+(use-package nix-mode
+  :mode (("\.nix$" . nix-mode) ) )
 (use-package num3-mode
   :commands (num3-mode global-num3-mode)
   :diminish num3-mode
