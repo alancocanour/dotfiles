@@ -266,10 +266,8 @@
   :config
   (setq org-enforce-todo-dependencies t)
   (setq org-footnote-section nil)
-  (setq org-hide-leading-stars t)
   (setq org-highlight-sparse-tree-matches nil)
   (setq org-indirect-buffer-display 'current-window)
-  (setq org-startup-indented 'globally)
   (setq org-todo-keywords '((sequence "TODO" "|" "DONE")))
   (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))
   (org-babel-do-load-languages
