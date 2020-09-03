@@ -27,7 +27,6 @@ myModMask = mod4Mask
 myKeys :: XConfig Layout -> M.Map (ButtonMask, KeySym) (X ())
 myKeys _ = M.fromList
            [ ((myModMask .|. shiftMask, xK_n), unsafeSpawn "pkill -USR1 redshift")
-           , ((myModMask .|. shiftMask, xK_l), unsafeSpawn "physlock")
            , ((myModMask .|. shiftMask, xK_e), runOrRaise "emacs" (className =? "Emacs"))
            , ((myModMask .|. shiftMask, xK_b), runOrRaise "firefox" (className =? "Firefox"))
            , ((myModMask .|. shiftMask, xK_z), sendToEmptyWorkspace)
