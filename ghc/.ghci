@@ -1,2 +1,2 @@
-:set prompt " \ESC[34mλ\ESC[m "
+:set prompt " \ESC[32;1m\ESC[1mλ\ESC[0m "
 :def hoogle \s -> return $ ":! hoogle --count=15 \"" ++ s ++ "\""
