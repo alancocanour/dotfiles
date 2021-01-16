@@ -265,6 +265,7 @@
   :bind
   (("C-c l" . org-store-link))
   :config
+  (setq org-archive-location (concat "%s_archive_" (format-time-string "%Y") "::"))
   (setq org-enforce-todo-dependencies t)
   (setq org-footnote-section nil)
   (setq org-highlight-sparse-tree-matches nil)
