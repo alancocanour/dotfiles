@@ -321,7 +321,7 @@
 (use-package simple
   :straight nil
   :bind
-  (("C-c SPC" . just-one-space)
+  (("<M-SPC>" . cycle-spacing)
    ("<C-S-backspace>" . kill-whole-line)
    ("C-c t" . toggle-truncate-lines))
   :config
