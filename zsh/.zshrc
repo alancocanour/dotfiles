@@ -85,3 +85,7 @@ set HISTCONTROL=ignoreboth
 if [ -e "$HOME/.zshrc_local" ] ; then
     source "$HOME/.zshrc_local"
 fi
+
+if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+    . /home/alan/.nix-profile/etc/profile.d/nix.sh
+fi
