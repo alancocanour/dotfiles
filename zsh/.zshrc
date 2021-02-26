@@ -44,12 +44,14 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(
     ant
     cabal
+    cargo
     cp
     docker
     git
     gitignore
     gradle
     rsync
+    rust
     stack
     sudo
     systemd
