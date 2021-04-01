@@ -117,6 +117,9 @@
   :demand
   :config
   (require 'dired-x))
+(use-package direnv
+  :config
+  (direnv-mode) )
 (use-package drag-stuff
   :commands (drag-stuff-mode turn-off-drag-stuff-mode)
   :diminish drag-stuff-mode

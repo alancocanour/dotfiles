@@ -91,3 +91,7 @@ fi
 if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
     . /home/alan/.nix-profile/etc/profile.d/nix.sh
 fi
+
+if [ `whence -p direnv` ] ; then
+    eval "$(direnv hook zsh)"
+fi
