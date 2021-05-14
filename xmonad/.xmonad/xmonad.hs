@@ -1,18 +1,19 @@
 import Data.Ratio
-import qualified Data.Map.Lazy as M
 import XMonad
 import XMonad.Actions.FindEmptyWorkspace
 import XMonad.Actions.WindowGo
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops(ewmh)
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Reflect
 import XMonad.Util.Run
+import qualified Data.Map.Lazy as M
 
 main = do
   trayer <- spawnPipe "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --transparent true --alpha 0 --tint 0x000000 --height 16"
   spawn "killall --exact --quiet redshift ; redshift"
-  xmonad =<< xmobar def
+  let config = ewmh def
           {   modMask = myModMask
             , terminal = "urxvt -e tmux new-session"
             , borderWidth = 1
@@ -21,6 +22,7 @@ main = do
             , layoutHook = myLayoutHook
             , keys = myKeys <+> keys def
             }
+  xmonad =<< xmobar config
 
 myModMask = mod4Mask
 
