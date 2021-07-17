@@ -230,6 +230,8 @@
 (use-package lisp
   :straight nil
   :bind ("C-S-d" . delete-pair) )
+(use-package lua-mode
+  :mode ("\\.lua$" . lua-mode) )
 (use-package magit
   :bind ("C-c g" . magit-status)
   :init
