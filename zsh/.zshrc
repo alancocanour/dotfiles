@@ -78,6 +78,10 @@ alias ga="git annex"
 alias pu="pushd"
 alias po="popd"
 
+if [ -d "/usr/share/info/" ] ; then
+    export INFOPATH=/usr/share/info
+fi
+
 if [ -e "$HOME/.dir_colors" ] ; then
     eval `dircolors ~/.dir_colors`
 fi
