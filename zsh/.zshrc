@@ -66,12 +66,14 @@ export EDITOR="emacs -nw"
 export BROWSER="firefox"
 export LESS="-iSR"
 
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-if [ -d "$HOME/.cabal/bin" ] ; then
-    PATH="$HOME/.cabal/bin:$PATH"
-fi
+add_path_dir() {
+  if [ -d "$1" ] ; then
+    PATH="$1:$PATH"
+  fi
+}
+add_path_dir "$HOME/bin"
+add_path_dir "$HOME/.cabal/bin"
+add_path_dir "$HOME/.cargo/bin"
 
 alias e="$EDITOR"
 alias ga="git annex"
