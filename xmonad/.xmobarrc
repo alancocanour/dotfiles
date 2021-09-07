@@ -1,7 +1,7 @@
 Config { font = "xft:Bitstream Vera Sans Mono:size=9:bold:antialias=true"  
      , bgColor = "#000000"  
      , fgColor = "grey"  
-     , position = TopP 0 500
+     , position = TopP 0 0
      , lowerOnStart = True
      , overrideRedirect = False
      , commands = [ Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10  

@@ -11,7 +11,6 @@ import XMonad.Util.Run(spawnPipe, safeSpawnProg, hPutStrLn)
 import qualified Data.Map.Lazy as M
 
 main = do
-  trayer <- spawn "killall --exact --quiet trayer ; trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --transparent true --alpha 0 --tint 0x000000 --height 16"
   xmobar <- spawnPipe "killall --exact --quiet xmobar ; xmobar"
   spawn "killall --exact --quiet redshift ; redshift"
   xmonad . docks. ewmh $ def
