@@ -31,9 +31,10 @@ myModMask = mod4Mask
 myKeys :: XConfig Layout -> M.Map (ButtonMask, KeySym) (X ())
 myKeys _ = M.fromList
            [ ((myModMask .|. shiftMask .|. controlMask, xK_Return), safeSpawnProg "urxvt")
-           , ((myModMask .|. shiftMask, xK_n), spawn "pkill -USR1 redshift")
+           , ((myModMask .|. shiftMask, xK_n), spawn "pkill -USR1 redshift") -- Toggle redshift
            , ((myModMask .|. shiftMask, xK_e), runOrRaise "emacs" (className =? "Emacs"))
            , ((myModMask .|. shiftMask, xK_b), runOrRaise "firefox" (className =? "Firefox"))
+           , ((myModMask .|. shiftMask, xK_d), spawn "pkill -USR1 xmobar") -- Move xmobar to next screen
            , ((myModMask .|. shiftMask, xK_z), sendToEmptyWorkspace)
            , ((myModMask .|. shiftMask, xK_x), tagToEmptyWorkspace)
            ]
