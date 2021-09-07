@@ -19,7 +19,6 @@ main = do
             , terminal = "urxvt -e tmux new-session"
             , borderWidth = 1
             , normalBorderColor = "#000000"
-            , manageHook = myManageHook
             , layoutHook = myLayoutHook
             , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmobar
@@ -39,13 +38,6 @@ myKeys _ = M.fromList
            , ((myModMask .|. shiftMask, xK_z), sendToEmptyWorkspace)
            , ((myModMask .|. shiftMask, xK_x), tagToEmptyWorkspace)
            ]
-
-myManageHook :: ManageHook
-myManageHook = composeAll [
-  className =? "Xfce4-notifyd" --> doIgnore, --Keep notifications from stealing focus
-  manageHook def
-  ]
-
 
 myLayoutHook = (avoidStruts $ reflectHoriz tall)
                ||| (avoidStruts $ Mirror tall)
