@@ -1,3 +1,6 @@
+import Control.Monad(join)
+import Data.List(nub)
+import Data.Maybe(maybeToList)
 import Data.Ratio((%))
 import XMonad
 import XMonad.Actions.FindEmptyWorkspace(sendToEmptyWorkspace, tagToEmptyWorkspace)
@@ -24,6 +27,7 @@ main = do
                         , ppTitle = xmobarColor "green" ""
                         }
             , keys = myKeys <+> keys def
+            , startupHook = setFullscreenSupported
             }
 
 myModMask = mod4Mask
@@ -43,3 +47,15 @@ myLayoutHook = (avoidStruts $ reflectHoriz tall)
                ||| (avoidStruts $ Mirror tall)
                ||| noBorders Full
   where tall = Tall 1 (3 % 100) (1 % 2)
+
+setFullscreenSupported :: X ()
+setFullscreenSupported = addSupported ["_NET_WM_STATE", "_NET_WM_STATE_FULLSCREEN"]
+
+addSupported :: [String] -> X ()
+addSupported props = withDisplay $ \dpy -> do
+    r <- asks theRoot
+    a <- getAtom "_NET_SUPPORTED"
+    newSupportedList <- mapM (fmap fromIntegral . getAtom) props
+    io $ do
+      supportedList <- fmap (join . maybeToList) $ getWindowProperty32 dpy a r
+      changeProperty32 dpy r a aTOM propModeReplace (nub $ newSupportedList ++ supportedList)
