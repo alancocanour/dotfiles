@@ -63,13 +63,10 @@
 
   ;;Settings that don't belong anywhere else
   (set-face-attribute 'default nil
-		      :family "Input"
+		      :family "Fira Code"
+		      :weight 'semibold
 		      :background "#000000"
 		      :foreground "#FFFFFF")
-  (defun set-monospace-font ()
-    (interactive)
-    (buffer-face-set :family "Input Mono"))
-  (add-hook 'compilation-mode-hook 'set-monospace-font)
   (defalias 'yes-or-no-p 'y-or-n-p)
   (if (eq system-type 'windows-nt) (setq w32-get-true-file-attributes nil))
   (setq-default display-buffer-reuse-frames t)
