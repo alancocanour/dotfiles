@@ -3,8 +3,8 @@ URxvt.pointerBlank: true
 URxvt.internalBorder: 0
 URxvt.background: black
 URxvt.foreground: white
-URxvt.font: xft:bitstream vera sans mono:size=11:antialias=true
-URxvt.boldFont: xft:bitstream vera sans mono:bold:size=11:antialias=true
+URxvt.font: xft:Fira Code:semibold:size=11:antialias=true
+URxvt.boldFont: xft:Fira Code:bold:size=11:antialias=true
 
 !! black dark/light
 *color0: #000000
