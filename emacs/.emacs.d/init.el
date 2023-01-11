@@ -357,6 +357,12 @@
   (setq display-time-default-load-average nil)
   (setq display-time-world-list '(("PST8PDT7" "Pacific") ("ARZ7" "Arizona") ("MTN7MDT6" "Mountain") ("EST5EDT4" "Eastern") ("GMT" "GMT") ("IST-5:30" "Bangalore") ("CST-8" "Beijing")))
   (display-time-mode) )
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode)
+  (setq undo-tree-auto-save-history nil)
+  (setq undo-tree-enable-undo-in-region t)
+  (setq undo-tree-visualizer-diff t))
 (use-package unfill
   :bind ("M-Q" . unfill-paragraph) )
 (use-package uuidgen
