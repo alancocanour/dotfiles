@@ -2,9 +2,12 @@
 
 (defun indent-whole-buffer ()
   (interactive)
-  (delete-trailing-whitespace)
-  (indent-region (point-min) (point-max) nil)
-  (untabify (point-min) (point-max)))
+  (if (editorconfig-core-get-properties)
+      (progn (message "Formatting with editorconfig")
+             (editorconfig-format-buffer))
+      (progn (message "Formatting without editorconfig")
+             (delete-trailing-whitespace)
+             (indent-region (point-min) (point-max) nil))))
 
 (defun push-mark-no-activate ()
   "Pushes `point' to `mark-ring' and does not activate the region

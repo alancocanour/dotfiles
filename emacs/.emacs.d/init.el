@@ -142,6 +142,10 @@
   (bind-keys* ("C-M-." . dumb-jump-hydra/body)
 	      ("M-." . dumb-jump-go))
   (setq dumb-jump-selector 'helm) )
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1) )
 (use-package electric
   :commands electric-indent-mode electric-pair-mode
   :init
