@@ -35,7 +35,8 @@
   (tool-bar-mode 0)
   (setq delete-by-moving-to-trash t)
   (setq hscroll-margin 0)
-  (setq hscroll-step 1)
+  (setq hscroll-step 0.3)
+  (setq frame-resize-pixelwise t)
 
   ;;Enable off-by-default commands
   (put 'dired-find-alternate-file 'disabled nil)
@@ -46,12 +47,15 @@
   ;;Settings that don't belong anywhere else
   (set-face-attribute 'default nil
 		      :family "Fira Code"
-		      :weight 'semibold
-		      :background "#000000"
-		      :foreground "#FFFFFF")
+		      :weight 'semibold)
+  (pixel-scroll-precision-mode)
+  (savehist-mode)
+  (setq enable-recursive-minibuffers t)
+  (minibuffer-depth-indicate-mode t)
   (defalias 'yes-or-no-p 'y-or-n-p)
   (if (eq system-type 'windows-nt) (setq w32-get-true-file-attributes nil))
   (setq-default display-buffer-reuse-frames t)
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
   (add-hook 'prog-mode-hook 'highlight-todo)
   (bind-keys* ("C-c |" . toggle-window-split)
 	      ("C-c \\" . toggle-window-split)
@@ -146,6 +150,32 @@
   :init
   (add-hook 'prog-mode-hook 'electric-indent-mode)
   (add-hook 'prog-mode-hook 'electric-pair-mode) )
+(use-package emacs
+  :config
+  (load-theme 'modus-vivendi)
+  ;; Run treesit-install-language-grammar before using treesitter modes
+  (setq major-mode-remap-alist
+        '((bash-mode . bash-ts-mode)
+	  (c++-mode . c++-ts-mode)
+	  (c-mode . c-ts-mode)
+	  (c-or-c++-mode . c-or-c++-ts-mode)
+	  (cmake-mode . cmake-ts-mode)
+	  (csharp-mode . csharp-ts-mode)
+	  (css-mode . css-ts-mode)
+	  (dockerfile-mode . dockerfile-ts-mode)
+	  (go-mod-mode . go-mod-ts-mode)
+	  (go-mode . go-ts-mode)
+	  (java-mode . java-ts-mode)
+	  (js-mode . js-ts-mode)
+	  (json-mode . json-ts-mode)
+	  (python-mode . python-ts-mode)
+	  (ruby-mode . ruby-ts-mode)
+	  (rust-mode . rust-ts-mode)
+	  (toml-mode . toml-ts-mode)
+	  (tsx-mode . tsx-ts-mode)
+	  (typescript-mode . typescript-ts-mode)
+	  (yaml-mode . yaml-ts-mode)))
+  )
 (use-package embark
   :ensure t
   :demand t
@@ -215,10 +245,6 @@
   :bind ("C-c i" . ispell)
   :config
   (setq ispell-program-name "aspell") )
-(use-package linum
-  :demand
-  :config
-  (global-linum-mode) )
 (use-package lisp
   :bind ("C-S-d" . delete-pair) )
 (use-package lua-mode
@@ -318,12 +344,6 @@
   :demand
   :config
   (scroll-bar-mode 0) )
-(use-package shackle
-  :config
-  (setq shackle-rules
-	'((compilation-mode :noselect t :align 'left)
-	  (help-mode :select t :other t :align 'left))
-	))
 (use-package simple
   :bind
   (("<M-SPC>" . cycle-spacing)
@@ -351,8 +371,8 @@
   :config
   (global-undo-tree-mode)
   (setq undo-tree-auto-save-history nil)
-  (setq undo-tree-enable-undo-in-region t)
-  (setq undo-tree-visualizer-diff t))
+  (setq undo-in-region t)
+  (setq undo-tree-visualizer-diff t) )
 (use-package unfill
   :bind ("M-Q" . unfill-paragraph) )
 (use-package uuidgen
