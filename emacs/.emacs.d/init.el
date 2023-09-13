@@ -1,8 +1,6 @@
 ;; Load configuration for the local machine if it exists
 (load (expand-file-name "local.el" user-emacs-directory) t)
 
-(use-package hydra
-  :commands defhydra )
 (with-eval-after-load 'package
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
@@ -112,21 +110,6 @@
   :diminish drag-stuff-mode
   :bind (("<M-up>" . drag-stuff-up)
 	 ("<M-down>" . drag-stuff-down)) )
-(use-package dumb-jump
-  :commands (dumb-jump-go dumb-jump-back dumb-jump-quick-look dumb-jump-go-other-window dumb-jump-go-prefer-external dumb-jump-go-prefer-external-other-window dumb-jump-go-prompt)
-  :init
-  (defhydra dumb-jump-hydra (:color blue :columns 3)
-    "Dumb Jump"
-    ("j" dumb-jump-go "Go")
-    ("o" dumb-jump-go-other-window "Other window")
-    ("e" dumb-jump-go-prefer-external "Go external")
-    ("x" dumb-jump-go-prefer-external-other-window "Go external other window")
-    ("i" dumb-jump-go-prompt "Prompt")
-    ("l" dumb-jump-quick-look "Quick look")
-    ("b" dumb-jump-back "Back"))
-  (bind-keys* ("C-M-." . dumb-jump-hydra/body)
-	      ("M-." . dumb-jump-go))
-  (setq dumb-jump-selector 'helm) )
 (use-package editorconfig
   :ensure t
   :config
