@@ -6,8 +6,6 @@
 (with-eval-after-load 'package
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
-(use-package ace-jump-mode
-  :bind ("C-c C-SPC" . ace-jump-mode) )
 (use-package ace-window
   :bind (("C-x o" . ace-window)
 	 ("M-o" . ace-window)) )
@@ -77,6 +75,10 @@
   :demand
   :config
   (mouse-avoidance-mode 'exile) )
+(use-package avy
+  :ensure t
+  :demand t
+  :bind (("C-c C-SPC" . avy-goto-word-or-subword-1)))
 (use-package calc
   :bind ("C-c c" . calc) )
 (use-package cc-mode
