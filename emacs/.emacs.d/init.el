@@ -378,6 +378,10 @@
   (keymap-set vertico-map "C-q" #'vertico-quick-exit))
 (use-package wgrep
   :defer 2)
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
 (use-package window
   :bind
   (("C-S-z" . bury-buffer)
