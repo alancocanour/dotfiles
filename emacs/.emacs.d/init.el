@@ -91,6 +91,33 @@
   (setq compilation-ask-about-save nil)
   (setq compilation-auto-jump-to-first-error nil)
   (setq compilation-scroll-output t) )
+(use-package consult
+  :ensure t
+  :bind (("C-x C-b" . consult-buffer)
+         ("C-S-y" . consult-yank-pop)
+         ("C-s" . consult-line)
+	 ("C-S-s" . consult-line-multi)
+	 ("C-c C-i" . consult-imenu)) )
+(use-package corfu
+  :ensure t
+  :init
+  (global-corfu-mode)
+  (setq corfu-quit-at-boundary nil)
+  (setq corfu-quit-no-match nil)
+  (setq corfu-count 20)
+  (keymap-set corfu-map "C-q" #'corfu-quick-insert))
+(use-package corfu-popupinfo
+  :after corfu
+  :hook (corfu-mode . corfu-popupinfo-mode)
+  :custom
+  (corfu-popupinfo-delay '(0.25 . 0.1))
+  :config
+  (corfu-popupinfo-mode))
+(use-package corfu-terminal
+  :if (not (display-graphic-p))
+  :ensure t
+  :config
+  (corfu-terminal-mode))
 (use-package csharp-mode
   :mode ("\\.cs$" . csharp-mode) )
 (use-package dired
@@ -119,6 +146,14 @@
   :init
   (add-hook 'prog-mode-hook 'electric-indent-mode)
   (add-hook 'prog-mode-hook 'electric-pair-mode) )
+(use-package embark
+  :ensure t
+  :demand t
+  :bind (("C-c a" . embark-act))
+  :init
+  (setq embark-quit-after-action nil))
+(use-package embark-consult
+  :ensure t)
 (use-package expand-region
   :bind ("C-c e" . er/expand-region) )
 (use-package files
@@ -149,17 +184,6 @@
   :config
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
   (add-hook 'haskell-mode-hook 'turn-on-haskell-doc) )
-(use-package helm
-  :commands helm-mode
-  :init
-  (helm-mode)
-  (bind-keys* ("M-x" . helm-M-x)
-	      ("C-x C-f" . helm-find-files)
-	      ("C-c C-i" . helm-imenu)
-	      ("C-x C-b" . helm-buffers-list)
-	      ("C-c C-h" . helm-resume)
-	      ("C-S-y" . helm-show-kill-ring)
-	      ("M-s M-o" . helm-occur)) )
 (use-package highlight-symbol
   :commands highlight-symbol-mode
   :diminish highlight-symbol-mode
@@ -204,9 +228,12 @@
   :init
   (setq magit-last-seen-setup-instructions "1.4.0")
   :config
-  (setq magit-completing-read-function 'helm--completing-read-default)
   (setq magit-diff-refine-hunk t)
   (setq magit-save-some-buffers nil) )
+(use-package marginalia
+  :ensure t
+  :config
+  (marginalia-mode))
 (use-package markdown-mode
   :mode (("\\.md" . markdown-mode)) )
 (use-package menu-bar
@@ -235,6 +262,10 @@
   (add-hook 'occur-mode-hook 'turn-on-occur-x-mode)
   :config
   (setq occur-linenumbers-in-margin t) )
+(use-package orderless
+  :ensure t
+  :config
+  (setq completion-styles '(orderless)))
 (use-package org
   :commands (org-mode orgtbl-mode)
   :bind
@@ -259,7 +290,6 @@
   :demand
   :config
   (setq projectile-indexing-method 'alien)
-  (setq projectile-completion-system 'helm)
   (setq projectile-switch-project-action 'magit-status)
   (projectile-mode)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map) )
@@ -302,12 +332,6 @@
   :config
   (setq column-number-mode t)
   (setq next-line-add-newlines t) )
-(use-package smartscan
-  :commands global-smartscan-mode
-  :defer 1
-  :config
-  (global-smartscan-mode)
-  (setq smartscan-symbol-selector "symbol") )
 (use-package solar
   :straight nil
   :commands calendar-sunrise-sunset
@@ -336,6 +360,11 @@
 (use-package vlf
   :defer 1
   :config (require 'vlf-setup) )
+(use-package vertico
+  :ensure t
+  :init
+  (vertico-mode)
+  (keymap-set vertico-map "C-q" #'vertico-quick-exit))
 (use-package wgrep
   :defer 2)
 (use-package wgrep-ag
