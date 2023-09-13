@@ -1,23 +1,10 @@
 ;; Load configuration for the local machine if it exists
 (load (expand-file-name "local.el" user-emacs-directory) t)
 
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-(setq straight-use-package-by-default t)
-(straight-use-package 'use-package)
-
 (use-package hydra
   :commands defhydra )
+(with-eval-after-load 'package
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
 (use-package ace-jump-mode
   :bind ("C-c C-SPC" . ace-jump-mode) )
@@ -34,7 +21,6 @@
   :init
   (add-hook 'ag-mode-hook 'toggle-truncate-lines) )
 (use-package alan
-  :straight nil
   :load-path "lisp/"
   :demand
   :config
@@ -94,7 +80,6 @@
 (use-package calc
   :bind ("C-c c" . calc) )
 (use-package cc-mode
-  :straight nil
   :commands java-mode
   :init
   (add-hook 'java-mode-hook 'subword-mode))
@@ -109,13 +94,11 @@
 (use-package csharp-mode
   :mode ("\\.cs$" . csharp-mode) )
 (use-package dired
-  :straight nil
   :commands dired
   :config
   (setq dired-listing-switches "-alh")
   (setq dired-recursive-deletes 'always) )
 (use-package dired-x
-  :straight nil
   :demand
   :config
   (require 'dired-x))
@@ -154,7 +137,6 @@
 (use-package expand-region
   :bind ("C-c e" . er/expand-region) )
 (use-package files
-  :straight nil
   :demand
   :config
   (setq backup-directory-alist `(("." . ,(expand-file-name "~/.emacs.d/saves" user-emacs-directory))))
@@ -229,7 +211,6 @@
   :config
   (global-linum-mode) )
 (use-package lisp
-  :straight nil
   :bind ("C-S-d" . delete-pair) )
 (use-package lua-mode
   :mode ("\\.lua$" . lua-mode) )
@@ -244,7 +225,6 @@
 (use-package markdown-mode
   :mode (("\\.md" . markdown-mode)) )
 (use-package menu-bar
-  :straight nil
   :demand
   :config
   (menu-bar-mode 0)
@@ -260,7 +240,6 @@
   :config
   (global-num3-mode) )
 (use-package nxml-mode
-  :straight nil
   :mode ("\.xml" . nxml-mode)
   :config
   (setq nxml-auto-insert-xml-declaration-flag nil)
@@ -321,7 +300,6 @@
          ("^[Rr]akefile$" . ruby-mode)
          ("\.rake$" . ruby-mode)) )
 (use-package scroll-bar
-  :straight nil
   :demand
   :config
   (scroll-bar-mode 0) )
@@ -332,7 +310,6 @@
 	  (help-mode :select t :other t :align 'left))
 	))
 (use-package simple
-  :straight nil
   :bind
   (("<M-SPC>" . cycle-spacing)
    ("<C-S-backspace>" . kill-whole-line)
@@ -379,7 +356,6 @@
 (use-package wgrep-ag
   :defer 2)
 (use-package window
-  :straight nil
   :bind
   (("C-S-z" . bury-buffer)
    ("C-}" . enlarge-window-horizontally)
