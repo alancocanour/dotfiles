@@ -352,12 +352,6 @@
   :config
   (setq column-number-mode t)
   (setq next-line-add-newlines t) )
-(use-package solar
-  :straight nil
-  :commands calendar-sunrise-sunset
-  :config
-  (setq calendar-latitude 33.45)
-  (setq calendar-longitude -112.066667) )
 (use-package sort
   :bind ("C-c s" . sort-lines) )
 (use-package time
@@ -377,17 +371,12 @@
   :bind ("M-Q" . unfill-paragraph) )
 (use-package uuidgen
   :commands uuidgen)
-(use-package vlf
-  :defer 1
-  :config (require 'vlf-setup) )
 (use-package vertico
   :ensure t
   :init
   (vertico-mode)
   (keymap-set vertico-map "C-q" #'vertico-quick-exit))
 (use-package wgrep
-  :defer 2)
-(use-package wgrep-ag
   :defer 2)
 (use-package window
   :bind
@@ -404,6 +393,4 @@
 (use-package yasnippet
   :commands yas-minor-mode
   :init
-  (use-package java-snippets)
-  (use-package haskell-snippets)
   (yas-global-mode) )
