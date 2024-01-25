@@ -373,9 +373,8 @@
   :commands uuidgen)
 (use-package vertico
   :ensure t
-  :init
-  (vertico-mode)
-  (keymap-set vertico-map "C-q" #'vertico-quick-exit))
+  :config
+  (vertico-mode) )
 (use-package wgrep
   :defer 2)
 (use-package which-key
