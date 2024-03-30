@@ -5,6 +5,7 @@
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
 (use-package ace-window
+  :ensure t
   :bind (("C-x o" . ace-window)
 	 ("M-o" . ace-window)) )
 (use-package adaptive-wrap
@@ -74,7 +75,7 @@
   :config
   (mouse-avoidance-mode 'exile) )
 (use-package avy
-  :ensure t
+  :commands avy-goto-word-or-subword-1
   :demand t
   :bind (("C-c C-SPC" . avy-goto-word-or-subword-1)))
 (use-package calc
@@ -99,9 +100,10 @@
 	 ("M-S M-O" . consult-line-multi)
 	 ("C-c C-i" . consult-imenu)) )
 (use-package corfu
-  :ensure t
+  :commands corfu-mode
   :init
-  (global-corfu-mode)
+  (add-hook 'prog-mode-hook 'corfu-mode)
+  :config
   (setq corfu-quit-at-boundary nil)
   (setq corfu-quit-no-match nil)
   (setq corfu-count 20)
@@ -115,7 +117,7 @@
   (corfu-popupinfo-mode))
 (use-package corfu-terminal
   :if (not (display-graphic-p))
-  :ensure t
+  :after corfu
   :config
   (corfu-terminal-mode))
 (use-package csharp-mode
@@ -351,6 +353,8 @@
 (use-package sort
   :bind ("C-c s" . sort-lines) )
 (use-package undo-tree
+  :ensure t
+  :diminish undo-tree-mode
   :config
   (global-undo-tree-mode)
   (setq undo-tree-auto-save-history nil)
@@ -368,6 +372,7 @@
   :defer 2)
 (use-package which-key
   :ensure t
+  :diminish which-key-mode
   :config
   (which-key-mode))
 (use-package window
