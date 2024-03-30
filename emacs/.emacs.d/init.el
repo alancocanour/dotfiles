@@ -398,4 +398,7 @@
 (use-package yasnippet
   :commands yas-minor-mode
   :init
-  (yas-global-mode) )
+  (add-hook 'text-mode-hook 'yas-minor-mode)
+  (add-hook 'prog-mode-hook 'yas-minor-mode)
+  :config
+  (setq yas-prompt-functions '(yas-completing-prompt yas-dropdown-prompt yas-maybe-ido-prompt yas-no-prompt)) )
