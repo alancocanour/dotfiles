@@ -99,8 +99,8 @@
   :ensure t
   :bind (("C-x C-b" . consult-buffer)
          ("C-S-y" . consult-yank-pop)
-         ("C-s" . consult-line)
-	 ("C-S-s" . consult-line-multi)
+         ("M-s M-o" . consult-line)
+	 ("M-S M-O" . consult-line-multi)
 	 ("C-c C-i" . consult-imenu)) )
 (use-package corfu
   :ensure t
