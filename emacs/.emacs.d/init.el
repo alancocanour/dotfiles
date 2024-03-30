@@ -147,30 +147,7 @@
   (add-hook 'prog-mode-hook 'electric-pair-mode) )
 (use-package emacs
   :config
-  (load-theme 'modus-vivendi)
-  ;; Run treesit-install-language-grammar before using treesitter modes
-  (setq major-mode-remap-alist
-        '((bash-mode . bash-ts-mode)
-	  (c++-mode . c++-ts-mode)
-	  (c-mode . c-ts-mode)
-	  (c-or-c++-mode . c-or-c++-ts-mode)
-	  (cmake-mode . cmake-ts-mode)
-	  (csharp-mode . csharp-ts-mode)
-	  (css-mode . css-ts-mode)
-	  (dockerfile-mode . dockerfile-ts-mode)
-	  (go-mod-mode . go-mod-ts-mode)
-	  (go-mode . go-ts-mode)
-	  (java-mode . java-ts-mode)
-	  (js-mode . js-ts-mode)
-	  (json-mode . json-ts-mode)
-	  (python-mode . python-ts-mode)
-	  (ruby-mode . ruby-ts-mode)
-	  (rust-mode . rust-ts-mode)
-	  (toml-mode . toml-ts-mode)
-	  (tsx-mode . tsx-ts-mode)
-	  (typescript-mode . typescript-ts-mode)
-	  (yaml-mode . yaml-ts-mode)))
-  )
+  (load-theme 'modus-vivendi) )
 (use-package embark
   :ensure t
   :demand t
@@ -352,6 +329,12 @@
   (setq next-line-add-newlines t) )
 (use-package sort
   :bind ("C-c s" . sort-lines) )
+(use-package treesit-auto
+  :ensure t
+  :config
+  (setq treesit-auto-install 'prompt)
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode) )
 (use-package undo-tree
   :ensure t
   :diminish undo-tree-mode
