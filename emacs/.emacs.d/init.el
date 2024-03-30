@@ -12,10 +12,6 @@
   :init
   (add-hook 'text-mode-hook 'adaptive-wrap-prefix-mode)
   (add-hook 'prog-mode-hook 'adaptive-wrap-prefix-mode) )
-(use-package ag
-  :bind ("C-c a" . ag-project)
-  :init
-  (add-hook 'ag-mode-hook 'toggle-truncate-lines) )
 (use-package alan
   :load-path "lisp/"
   :demand
