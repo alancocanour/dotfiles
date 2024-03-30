@@ -335,6 +335,8 @@
   (rainbow-delimiters-depth-7-face ((t (:foreground "DarkOliveGreen2"))))
   (rainbow-delimiters-depth-8-face ((t (:foreground "dark violet"))))
   (rainbow-delimiters-unmatched-face ((t (:background "magenta" :foreground "#88090B")))) )
+(use-package rg
+  :commands (rg rg-menu rg-dwim rg-dwim-project-dir) )
 (use-package ruby-mode
   :mode (("\.gemspec$" . ruby-mode)
          ("Gemfile$" . ruby-mode)
