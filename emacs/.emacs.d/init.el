@@ -303,7 +303,8 @@
 (use-package paren
   :demand
   :config
-  (setq show-paren-mode 1) )
+  (setq show-paren-mode 1)
+  (setq show-paren-style 'expression) )
 (use-package projectile
   :commands projectile-mode
   :demand
